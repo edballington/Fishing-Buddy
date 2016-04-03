@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  MapViewController.swift
 //  Fishing Buddy
 //
 //  Created by Ed Ballington on 3/29/16.
@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import MapKit
 
-class FirstViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
 
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

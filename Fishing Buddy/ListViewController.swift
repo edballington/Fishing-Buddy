@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  ListViewController.swift
 //  Fishing Buddy
 //
 //  Created by Ed Ballington on 3/29/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

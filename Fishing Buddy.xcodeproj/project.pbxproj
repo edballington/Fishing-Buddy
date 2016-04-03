@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */; };
 		766CC7941CAABC8800C229D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7931CAABC8800C229D5 /* AppDelegate.swift */; };
-		766CC7961CAABC8800C229D5 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7951CAABC8800C229D5 /* FirstViewController.swift */; };
-		766CC7981CAABC8800C229D5 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7971CAABC8800C229D5 /* SecondViewController.swift */; };
+		766CC7961CAABC8800C229D5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7951CAABC8800C229D5 /* MapViewController.swift */; };
+		766CC7981CAABC8800C229D5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7971CAABC8800C229D5 /* ListViewController.swift */; };
 		766CC79B1CAABC8800C229D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766CC7991CAABC8800C229D5 /* Main.storyboard */; };
 		766CC79D1CAABC8800C229D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766CC79C1CAABC8800C229D5 /* Assets.xcassets */; };
 		766CC7A01CAABC8800C229D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766CC79E1CAABC8800C229D5 /* LaunchScreen.storyboard */; };
@@ -35,10 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCatchViewController.swift; sourceTree = "<group>"; };
 		766CC7901CAABC8700C229D5 /* Fishing Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fishing Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766CC7931CAABC8800C229D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		766CC7951CAABC8800C229D5 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		766CC7971CAABC8800C229D5 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		766CC7951CAABC8800C229D5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		766CC7971CAABC8800C229D5 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		766CC79A1CAABC8800C229D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		766CC79C1CAABC8800C229D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		766CC79F1CAABC8800C229D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,9 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				766CC7931CAABC8800C229D5 /* AppDelegate.swift */,
-				766CC7951CAABC8800C229D5 /* FirstViewController.swift */,
-				766CC7971CAABC8800C229D5 /* SecondViewController.swift */,
 				766CC7991CAABC8800C229D5 /* Main.storyboard */,
+				766CC7951CAABC8800C229D5 /* MapViewController.swift */,
+				766CC7971CAABC8800C229D5 /* ListViewController.swift */,
+				763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */,
 				766CC79C1CAABC8800C229D5 /* Assets.xcassets */,
 				766CC79E1CAABC8800C229D5 /* LaunchScreen.storyboard */,
 				766CC7A11CAABC8800C229D5 /* Info.plist */,
@@ -259,9 +262,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				766CC7981CAABC8800C229D5 /* SecondViewController.swift in Sources */,
+				766CC7981CAABC8800C229D5 /* ListViewController.swift in Sources */,
 				766CC7941CAABC8800C229D5 /* AppDelegate.swift in Sources */,
-				766CC7961CAABC8800C229D5 /* FirstViewController.swift in Sources */,
+				763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */,
+				766CC7961CAABC8800C229D5 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +490,7 @@
 				766CC7BC1CAABC8800C229D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		766CC7BD1CAABC8800C229D5 /* Build configuration list for PBXNativeTarget "Fishing BuddyTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +499,7 @@
 				766CC7BF1CAABC8800C229D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		766CC7C01CAABC8800C229D5 /* Build configuration list for PBXNativeTarget "Fishing BuddyUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +508,7 @@
 				766CC7C21CAABC8800C229D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
