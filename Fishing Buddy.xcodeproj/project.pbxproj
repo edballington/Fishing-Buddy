@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */; };
+		763632D31CB1C34C00A3EF43 /* FBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D21CB1C34C00A3EF43 /* FBClient.swift */; };
+		763632D51CB1CA3C00A3EF43 /* FBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D41CB1CA3C00A3EF43 /* FBConstants.swift */; };
+		763632D91CB1FE2400A3EF43 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */; };
+		763632DB1CB1FE5600A3EF43 /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632DA1CB1FE5600A3EF43 /* Catch.swift */; };
 		766CC7941CAABC8800C229D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7931CAABC8800C229D5 /* AppDelegate.swift */; };
 		766CC7961CAABC8800C229D5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7951CAABC8800C229D5 /* MapViewController.swift */; };
 		766CC7981CAABC8800C229D5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7971CAABC8800C229D5 /* ListViewController.swift */; };
@@ -16,6 +20,7 @@
 		766CC7A01CAABC8800C229D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766CC79E1CAABC8800C229D5 /* LaunchScreen.storyboard */; };
 		766CC7AB1CAABC8800C229D5 /* Fishing_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7AA1CAABC8800C229D5 /* Fishing_BuddyTests.swift */; };
 		766CC7B61CAABC8800C229D5 /* Fishing_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */; };
+		76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76E478A41CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +42,10 @@
 
 /* Begin PBXFileReference section */
 		763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCatchViewController.swift; sourceTree = "<group>"; };
+		763632D21CB1C34C00A3EF43 /* FBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBClient.swift; sourceTree = "<group>"; };
+		763632D41CB1CA3C00A3EF43 /* FBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBConstants.swift; sourceTree = "<group>"; };
+		763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		763632DA1CB1FE5600A3EF43 /* Catch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Catch.swift; sourceTree = "<group>"; };
 		766CC7901CAABC8700C229D5 /* Fishing Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fishing Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766CC7931CAABC8800C229D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		766CC7951CAABC8800C229D5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +60,7 @@
 		766CC7B11CAABC8800C229D5 /* Fishing BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fishing BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fishing_BuddyUITests.swift; sourceTree = "<group>"; };
 		766CC7B71CAABC8800C229D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76E478A51CBD6D6100F022A5 /* FishingBuddy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FishingBuddy.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +88,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		763632D61CB1CA4800A3EF43 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				763632D41CB1CA3C00A3EF43 /* FBConstants.swift */,
+				763632D21CB1C34C00A3EF43 /* FBClient.swift */,
+			);
+			name = Client;
+			sourceTree = "<group>";
+		};
+		763632D71CB1CA5200A3EF43 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				766CC7951CAABC8800C229D5 /* MapViewController.swift */,
+				766CC7971CAABC8800C229D5 /* ListViewController.swift */,
+				763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		763632DC1CB1FE5E00A3EF43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				763632DA1CB1FE5600A3EF43 /* Catch.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		766CC7871CAABC8700C229D5 = {
 			isa = PBXGroup;
 			children = (
@@ -102,10 +139,12 @@
 			isa = PBXGroup;
 			children = (
 				766CC7931CAABC8800C229D5 /* AppDelegate.swift */,
+				763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */,
+				76E478A41CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld */,
 				766CC7991CAABC8800C229D5 /* Main.storyboard */,
-				766CC7951CAABC8800C229D5 /* MapViewController.swift */,
-				766CC7971CAABC8800C229D5 /* ListViewController.swift */,
-				763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */,
+				763632DC1CB1FE5E00A3EF43 /* Model */,
+				763632D61CB1CA4800A3EF43 /* Client */,
+				763632D71CB1CA5200A3EF43 /* View Controllers */,
 				766CC79C1CAABC8800C229D5 /* Assets.xcassets */,
 				766CC79E1CAABC8800C229D5 /* LaunchScreen.storyboard */,
 				766CC7A11CAABC8800C229D5 /* Info.plist */,
@@ -263,6 +302,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				766CC7981CAABC8800C229D5 /* ListViewController.swift in Sources */,
+				763632DB1CB1FE5600A3EF43 /* Catch.swift in Sources */,
+				76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */,
+				763632D51CB1CA3C00A3EF43 /* FBConstants.swift in Sources */,
+				763632D31CB1C34C00A3EF43 /* FBClient.swift in Sources */,
+				763632D91CB1FE2400A3EF43 /* CoreDataStackManager.swift in Sources */,
 				766CC7941CAABC8800C229D5 /* AppDelegate.swift in Sources */,
 				763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */,
 				766CC7961CAABC8800C229D5 /* MapViewController.swift in Sources */,
@@ -511,6 +555,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		76E478A41CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				76E478A51CBD6D6100F022A5 /* FishingBuddy.xcdatamodel */,
+			);
+			currentVersion = 76E478A51CBD6D6100F022A5 /* FishingBuddy.xcdatamodel */;
+			path = FishingBuddy.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 766CC7881CAABC8700C229D5 /* Project object */;
 }
