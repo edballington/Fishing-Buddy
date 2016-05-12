@@ -35,6 +35,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             })
         }
         
+        tableView.reloadData()
     }
     
     

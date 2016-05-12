@@ -29,7 +29,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //MARK: Properties
     
-    var catchAnnotation: MKPointAnnotation?     //Annotation used for the mapView to locate the catch - there should be only on
+    var catchAnnotation = MKPointAnnotation()     //Annotation used for the mapView to locate the catch - there should be only on
     var weightDecimalValue: Double?             //Weight in lbs
     var locationManager = CLLocationManager()
 
@@ -72,10 +72,6 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func saveCatch(sender: AnyObject) {
         
         //Check that mandatory fields are completed and display alertView for any that aren't
-        guard (catchAnnotation) != nil else {
-            showAlertView("Catch location is mandatory - Please drop a pin on the map")
-            return
-        }
         
         guard (speciesTextField.text) != "" else {
             showAlertView("Please select a value for Species")
@@ -88,7 +84,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
         
         //Initialize a new Catch Object from the entered data
-        let _ = Catch(lat: (self.catchAnnotation?.coordinate.latitude)!, long: (self.catchAnnotation?.coordinate.longitude)!, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField?.text, baitColor: lureColorTextField?.text, share: shareCatchSwitch.on, context: sharedContext)
+        let _ = Catch(lat: self.catchAnnotation.coordinate.latitude, long: self.catchAnnotation.coordinate.longitude, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField?.text, baitColor: lureColorTextField?.text, share: shareCatchSwitch.on, context: sharedContext)
         
         //Save Catch object to Core Data if everything OK
         CoreDataStackManager.sharedInstance().saveContext()
@@ -105,7 +101,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         if sender.state != UIGestureRecognizerState.Began {
             return
         }
-        
+   /*
         /* Only proceed if an annotation has not already been set - don't allow more than one */
         if self.catchAnnotation == nil {
         
@@ -118,7 +114,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 self.mapView.addAnnotation(self.catchAnnotation!)
             }
             
-        }
+        } */
         
     }
     
@@ -148,10 +144,9 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         _ = locationManager.requestLocation()
         
-        /*catchAnnotation = MKPointAnnotation()
-        catchAnnotation?.coordinate = (locationManager.location?.coordinate)!
-        
-        mapView.addAnnotation(catchAnnotation!)*/
+        //Drop an initial pin for the catch location at the users current location - can be dragged to a new location afterwards
+        catchAnnotation.coordinate = (locationManager.location?.coordinate)!
+        mapView.addAnnotation(catchAnnotation)
         
     }
     
