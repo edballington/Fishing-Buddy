@@ -14,10 +14,10 @@ class Catch: NSManagedObject {
     
     //MARK: Properties
     
+    @NSManaged var userDeviceID: String            //String representing the user's unique Device ID
+    
     @NSManaged var latitude: Double                //Latitude of the catch
     @NSManaged var longitude: Double               //Longitude of the catch
-    
-    var photo: UIImage?                  //Photo of the catch (Optional)
     
     @NSManaged var species: String                  //Type of fish (i.e. largemouth bass, bream, crappie, etc)
     @NSManaged var weight: Double                   //Weight of the catch (lbs)

@@ -8,14 +8,15 @@
 
 import UIKit
 import MapKit
+import CoreData
 
-class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, MKMapViewDelegate {
+class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate {
     
     //MARK: Constants
     
-    let speciesPickerValues = ["Largemouth Bass", "Smallmouth Bass", "Striped Bass", "Bream", "Catfish", "Crappie", "Bluegill", "Walleye"]
-    let lurePickerValues = ["Plastic Worm", "Crankbait", "Spinner Bait", "Jig", "Plastic Frog", "Live Minnow", "Live Worm", "Live Cricket", "Other"]
-    let lureColorPickerValues = [["Green", "Blue", "Red", "Orange", "Yellow", "Pink", "Black"],["Green", "Blue", "Red", "Orange", "Yellow", "Pink", "Black"]]
+    let speciesPickerValues = ["Largemouth Bass", "Smallmouth Bass", "Striped Bass", "Catfish", "Crappie", "Bluegill", "Walleye"]
+    let lurePickerValues = ["Plastic Worm", "Plastic Lizard", "Fluke", "Crankbait", "Spinner Bait", "Jig", "Swimbait", "Buzzbait", "Artificial Frog", "Other"]
+    let lureColorPickerValues = [["Black", "Blue", "Purple", "Chartreuse", "Pumpkin", "Watermelon", "Red", "Pink", "White", "Yellow", "Green"], ["Black", "Blue", "Purple", "Chartreuse", "Pumpkin", "Watermelon", "Red", "Pink", "White", "Yellow", "Green"]]
     let weightPickerValues = [["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25"], ["lbs"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], ["oz"]]
     
     enum pickerViewTag: Int {       //Used to identify the various picker views when calling the delegate and datasource methods
@@ -28,8 +29,9 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //MARK: Properties
     
-    var catchAnnotation: MKPointAnnotation?     //Annotation used for the mapView to locate the catch - there should be only one
-    var catchAnnotationView = MKPinAnnotationView()
+    var catchAnnotation: MKPointAnnotation?     //Annotation used for the mapView to locate the catch - there should be only on
+    var weightDecimalValue: Double?             //Weight in lbs
+    var locationManager = CLLocationManager()
 
     
     //MARK: Outlets
@@ -40,6 +42,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var lureTextField: UITextField!
     @IBOutlet weak var lureColorTextField: UITextField!
     @IBOutlet weak var shareCatchSwitch: UISwitch!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     var pickerSelection = String()
@@ -50,6 +53,9 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.delegate = self
+        locationManager.delegate = self
+        
         setupPickerViews()
         
         //Add a gesture recognizer for long press to add pins
@@ -57,7 +63,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         longPressRecognizer.minimumPressDuration = 0.6
         mapView.addGestureRecognizer(longPressRecognizer)
         
-        mapView.delegate = self
+        setMapInitialState()
         
     }
     
@@ -65,11 +71,29 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @IBAction func saveCatch(sender: AnyObject) {
         
-        //TODO: - Check that mandatory fields are completed
+        //Check that mandatory fields are completed and display alertView for any that aren't
+        guard (catchAnnotation) != nil else {
+            showAlertView("Catch location is mandatory - Please drop a pin on the map")
+            return
+        }
         
-        //TODO: - Display alertView for any that aren't and leave view up
+        guard (speciesTextField.text) != "" else {
+            showAlertView("Please select a value for Species")
+            return
+        }
         
-        //TODO: - Save Catch object to Core Data if everything OK
+        guard (weightTextField.text) != "" else {
+            showAlertView("Please select a value for the catch weight")
+            return
+        }
+        
+        //Initialize a new Catch Object from the entered data
+        let _ = Catch(lat: (self.catchAnnotation?.coordinate.latitude)!, long: (self.catchAnnotation?.coordinate.longitude)!, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField?.text, baitColor: lureColorTextField?.text, share: shareCatchSwitch.on, context: sharedContext)
+        
+        //Save Catch object to Core Data if everything OK
+        CoreDataStackManager.sharedInstance().saveContext()
+        
+        navigationController?.popViewControllerAnimated(true)
         
     }
     
@@ -82,6 +106,9 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             return
         }
         
+        /* Only proceed if an annotation has not already been set - don't allow more than one */
+        if self.catchAnnotation == nil {
+        
         let pinCoordinate = mapView.convertPoint(sender.locationInView(mapView), toCoordinateFromView: mapView)
         
             catchAnnotation = MKPointAnnotation()
@@ -90,49 +117,43 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 self.mapView.addAnnotation(self.catchAnnotation!)
             }
+            
+        }
         
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        var pinAnnotationView = MKPinAnnotationView()
+        let pinAnnotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier("myPin") as? MKPinAnnotationView
         
-        if let pinAnnotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier("myPin") {
-            print("Reusing annotationView")
-            pinAnnotationView.annotation = annotation
-            pinAnnotationView.draggable = true
+        if pinAnnotationView == nil {
+            let annotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
+            annotation.draggable = true
+            annotation.animatesDrop = true
+            return annotation
 
-        } else {
-            print("Creating a new annotationView")
-            pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
-        
-                pinAnnotationView.draggable = true
-                pinAnnotationView.canShowCallout = true
-                pinAnnotationView.animatesDrop = true
-            
         }
         
-            return pinAnnotationView
+        return pinAnnotationView
         
-    }
-    
-    //Handle dragging of annotation
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        print("didChangeDragState")
-        switch (newState) {
-        case .Starting:
-            print("Starting DragState")
-            view.dragState = .Dragging
-        case .Ending, .Canceling:
-            print("Ending or Cancelling DragState")
-            view.dragState = .None
-        default:
-            break
-        }
     }
     
     
     //MARK: Convenience methods
+    
+    //Setup initial map view by zooming in to current location
+    func setMapInitialState() {
+        
+        mapView.showsUserLocation = false
+        
+        _ = locationManager.requestLocation()
+        
+        /*catchAnnotation = MKPointAnnotation()
+        catchAnnotation?.coordinate = (locationManager.location?.coordinate)!
+        
+        mapView.addAnnotation(catchAnnotation!)*/
+        
+    }
     
     /* Method to display an alertView with a single OK button to acknowledge */
     func showAlertView(message: String?) {
@@ -226,6 +247,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
+    
     //MARK: PickerView Datasource methods
 
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -290,12 +312,43 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             pickerSelection = lurePickerValues[row]
         case pickerViewTag.weightPicker.rawValue:
             pickerSelection = weightPickerValues[0][pickerView.selectedRowInComponent(0)] + " lbs " + weightPickerValues[2][pickerView.selectedRowInComponent(2)] + " oz"
+            weightDecimalValue = Double(weightPickerValues[0][pickerView.selectedRowInComponent(0)])! + Double(weightPickerValues[2][pickerView.selectedRowInComponent(2)])!/16
         case pickerViewTag.lureColorPicker.rawValue:
-            pickerSelection = lureColorPickerValues[0][pickerView.selectedRowInComponent(0)] + " / " + lureColorPickerValues[1][pickerView.selectedRowInComponent(1)]
+            pickerSelection = lureColorPickerValues[0][pickerView.selectedRowInComponent(0)] + "/" + lureColorPickerValues[1][pickerView.selectedRowInComponent(1)]
         default:
             self.pickerSelection = "TEST"
         }
 
     }
+    
+    
+    //MARK: Location Manager Delegate methods
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation: CLLocation = locations[0]
+        let latitude = userLocation.coordinate.latitude
+        let longitude = userLocation.coordinate.longitude
+        let latDelta: CLLocationDegrees = 0.05
+        let longDelta: CLLocationDegrees = 0.05
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+        let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        self.mapView.setRegion(region, animated: true)
+        
+        self.activityIndicator.stopAnimating()
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.showAlertView("Can't determine current location - please make sure location services are enabled in settings")
+        }
+    }
+    
+    
+    //MARK: - Core Data Convenience
+    
+    lazy var sharedContext: NSManagedObjectContext =  {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }()
 
 }

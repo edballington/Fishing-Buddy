@@ -11,7 +11,8 @@ import CoreData
 
 
 
-private let SQLITE_FILE_NAME = "VirtualTourist.sqlite"
+private let SQLITE_FILE_NAME = "FishingBuddy.sqlite"
+private let RESOURCE = "FishingBuddy"
 
 class CoreDataStackManager {
     
@@ -45,7 +46,7 @@ class CoreDataStackManager {
 
         print("Instantiating the managedObjectModel property")
         
-        let modelURL = NSBundle.mainBundle().URLForResource("VirtualTourist", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource(RESOURCE, withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		761704911CE271E400C3E500 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761704901CE271E400C3E500 /* SettingsViewController.swift */; };
+		7624F3C31CDC46DC00165BD7 /* CatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */; };
 		763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */; };
 		763632D31CB1C34C00A3EF43 /* FBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D21CB1C34C00A3EF43 /* FBClient.swift */; };
 		763632D51CB1CA3C00A3EF43 /* FBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D41CB1CA3C00A3EF43 /* FBConstants.swift */; };
@@ -21,6 +23,7 @@
 		766CC7AB1CAABC8800C229D5 /* Fishing_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7AA1CAABC8800C229D5 /* Fishing_BuddyTests.swift */; };
 		766CC7B61CAABC8800C229D5 /* Fishing_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */; };
 		76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76E478A41CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld */; };
+		76ED43AF1CDA2DB5004FB5B1 /* CatchAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		761704901CE271E400C3E500 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchTableViewCell.swift; sourceTree = "<group>"; };
 		763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCatchViewController.swift; sourceTree = "<group>"; };
 		763632D21CB1C34C00A3EF43 /* FBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBClient.swift; sourceTree = "<group>"; };
 		763632D41CB1CA3C00A3EF43 /* FBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBConstants.swift; sourceTree = "<group>"; };
@@ -61,6 +66,7 @@
 		766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fishing_BuddyUITests.swift; sourceTree = "<group>"; };
 		766CC7B71CAABC8800C229D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76E478A51CBD6D6100F022A5 /* FishingBuddy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FishingBuddy.xcdatamodel; sourceTree = "<group>"; };
+		76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +107,11 @@
 			isa = PBXGroup;
 			children = (
 				766CC7951CAABC8800C229D5 /* MapViewController.swift */,
+				76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */,
+				7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */,
 				766CC7971CAABC8800C229D5 /* ListViewController.swift */,
 				763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */,
+				761704901CE271E400C3E500 /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 				TargetAttributes = {
 					766CC78F1CAABC8700C229D5 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = CZDK9JC4YC;
 					};
 					766CC7A51CAABC8800C229D5 = {
 						CreatedOnToolsVersion = 7.3;
@@ -305,11 +315,14 @@
 				763632DB1CB1FE5600A3EF43 /* Catch.swift in Sources */,
 				76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */,
 				763632D51CB1CA3C00A3EF43 /* FBConstants.swift in Sources */,
+				76ED43AF1CDA2DB5004FB5B1 /* CatchAnnotation.swift in Sources */,
 				763632D31CB1C34C00A3EF43 /* FBClient.swift in Sources */,
 				763632D91CB1FE2400A3EF43 /* CoreDataStackManager.swift in Sources */,
 				766CC7941CAABC8800C229D5 /* AppDelegate.swift in Sources */,
+				7624F3C31CDC46DC00165BD7 /* CatchTableViewCell.swift in Sources */,
 				763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */,
 				766CC7961CAABC8800C229D5 /* MapViewController.swift in Sources */,
+				761704911CE271E400C3E500 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,10 +464,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Fishing Buddy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Ed-Ballington.Fishing-Buddy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -462,10 +478,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Fishing Buddy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Ed-Ballington.Fishing-Buddy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
