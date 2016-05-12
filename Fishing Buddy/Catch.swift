@@ -60,6 +60,11 @@ class Catch: NSManagedObject {
         let entity =  NSEntityDescription.entityForName("Catch", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
+        //Get the devices Unique ID to distinguish this catch from other user's catches
+        self.userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+        
+        print("\(self.userDeviceID)")
+        
         self.latitude = lat
         self.longitude = long
         self.species = species

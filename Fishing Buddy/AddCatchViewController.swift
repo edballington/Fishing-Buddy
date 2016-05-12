@@ -58,11 +58,6 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         setupPickerViews()
         
-        //Add a gesture recognizer for long press to add pins
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(AddCatchViewController.dropPin(_:)))
-        longPressRecognizer.minimumPressDuration = 0.6
-        mapView.addGestureRecognizer(longPressRecognizer)
-        
         setMapInitialState()
         
     }
@@ -95,29 +90,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     
     //MARK: Other methods
-    
-    func dropPin(sender: UIGestureRecognizer) {
-        
-        if sender.state != UIGestureRecognizerState.Began {
-            return
-        }
-   /*
-        /* Only proceed if an annotation has not already been set - don't allow more than one */
-        if self.catchAnnotation == nil {
-        
-        let pinCoordinate = mapView.convertPoint(sender.locationInView(mapView), toCoordinateFromView: mapView)
-        
-            catchAnnotation = MKPointAnnotation()
-            catchAnnotation!.coordinate = pinCoordinate
-        
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                self.mapView.addAnnotation(self.catchAnnotation!)
-            }
-            
-        } */
-        
-    }
-    
+     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         let pinAnnotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier("myPin") as? MKPinAnnotationView
@@ -214,10 +187,10 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func donePicker() {
         
         if speciesTextField.isFirstResponder() {
-            speciesTextField.text = pickerSelection
+            speciesTextField.text = (pickerSelection != "") ? pickerSelection : speciesPickerValues[0]
             speciesTextField.resignFirstResponder()
         } else if lureTextField.isFirstResponder() {
-            lureTextField.text = pickerSelection
+            lureTextField.text = (pickerSelection != "") ? pickerSelection : lurePickerValues[0]
             lureTextField.resignFirstResponder()
         } else if weightTextField.isFirstResponder() {
             weightTextField.text = pickerSelection
