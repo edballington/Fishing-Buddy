@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreData
 import CoreLocation
+import Firebase
 
 class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate {
 
@@ -19,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     
     //MARK: Properties
     var mapCenterLocation: CLLocationCoordinate2D?
+    let firebaseRef = Firebase(url: "https://blistering-heat-7872.firebaseio.com/")
     
     /* Devices Unique ID to distinguish my catches from other user's catches */
     var userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
@@ -29,6 +31,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         super.viewDidLoad()
         
         mapView.delegate = self
+        
+        getCatchesFromFirebase()
         
         setMapInitialState()
     
@@ -105,6 +109,47 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    /* Method to query other user's catches from Firebase db and store them in Fetched Results Controller */
+    func getCatchesFromFirebase() {
+        
+        //TODO: - Pull all of the other user's catches and store in an array of dictionaries
+        firebaseRef.childByAppendingPath("users").queryOrderedByChild("users").observeSingleEventOfType(.Value, withBlock: { firebaseSnapshot in
+            
+            if let catchDictionary = firebaseSnapshot.value as? NSDictionary {
+                
+                for (user, catches) in catchDictionary {
+                    //Only get the catch data for the other users
+                    if user as! String != self.userDeviceID {
+                        
+                        //Iterate over all of the other users catches
+                        for fish in (catches as! NSDictionary) {
+                            
+                            let fishDictionary = fish.value as! NSDictionary
+                            
+                                //Create a new Catch Object in shared context from the retrieved dictionary
+                                let otherFish = Catch(lat: fishDictionary["latitude"] as! Double, long: fishDictionary["longitude"] as! Double, species: fishDictionary["species"] as! String, weight: fishDictionary["weight"] as! Double, baitType: fishDictionary["baitType"] as! String, baitColor: fishDictionary["baitColor"] as! String, share: true, context: self.sharedContext)
+                            
+                                CoreDataStackManager.sharedInstance().saveContext()
+                            
+                        }
+                    }
+                }
+                
+            }
+        })
+        
+        //TODO: - Iterate through the array of dictionaries and store each into shared context
+        
+        
+        /*
+        //Initialize a new Catch Object from the entered data
+        let fish = Catch(lat: self.catchAnnotation.coordinate.latitude, long: self.catchAnnotation.coordinate.longitude, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField.text!, baitColor: lureColorTextField.text!, share: shareCatchSwitch.on, context: sharedContext)
+        
+        //Save Catch object to Core Data if everything OK
+        CoreDataStackManager.sharedInstance().saveContext()
+         */
     }
     
     
