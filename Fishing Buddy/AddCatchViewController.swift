@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import CoreData
+import Firebase
+
 
 class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -18,6 +20,8 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     let lurePickerValues = ["Plastic Worm", "Plastic Lizard", "Fluke", "Crankbait", "Spinner Bait", "Jig", "Swimbait", "Buzzbait", "Artificial Frog", "Other"]
     let lureColorPickerValues = [["Black", "Blue", "Purple", "Chartreuse", "Pumpkin", "Watermelon", "Red", "Pink", "White", "Yellow", "Green"], ["Black", "Blue", "Purple", "Chartreuse", "Pumpkin", "Watermelon", "Red", "Pink", "White", "Yellow", "Green"]]
     let weightPickerValues = [["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25"], ["lbs"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], ["oz"]]
+    
+    let firebaseRef = Firebase(url: "https://blistering-heat-7872.firebaseio.com/")
     
     enum pickerViewTag: Int {       //Used to identify the various picker views when calling the delegate and datasource methods
         case speciesPicker = 0
@@ -32,6 +36,10 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var catchAnnotation = MKPointAnnotation()     //Annotation used for the mapView to locate the catch - there should be only on
     var weightDecimalValue: Double?             //Weight in lbs
     var locationManager = CLLocationManager()
+    
+    /* Devices Unique ID to distinguish this catch from other user's catches */
+    var userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+    
 
     
     //MARK: Outlets
@@ -78,11 +86,28 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             return
         }
         
-        //Initialize a new Catch Object from the entered data
-        let _ = Catch(lat: self.catchAnnotation.coordinate.latitude, long: self.catchAnnotation.coordinate.longitude, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField?.text, baitColor: lureColorTextField?.text, share: shareCatchSwitch.on, context: sharedContext)
+        guard (lureTextField.text) != "" else {
+            showAlertView("Please select a value for the lure type")
+            return
+        }
         
+        guard (lureColorTextField.text) != "" else {
+            showAlertView("Please select values for the lure color")
+            return
+        }
+        
+        //Initialize a new Catch Object from the entered data
+        let fish = Catch(lat: self.catchAnnotation.coordinate.latitude, long: self.catchAnnotation.coordinate.longitude, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField.text!, baitColor: lureColorTextField.text!, share: shareCatchSwitch.on, context: sharedContext)
+    
         //Save Catch object to Core Data if everything OK
         CoreDataStackManager.sharedInstance().saveContext()
+        
+        //Save Catch object to Firebase db if 'Share' is enabled
+        if fish.share {
+            let userRef = firebaseRef.childByAppendingPath("users").childByAppendingPath(userDeviceID)
+            let newCatchRef = userRef.childByAutoId()
+            newCatchRef.setValue(fish.jsonDictionary)
+        }
         
         navigationController?.popViewControllerAnimated(true)
         

@@ -20,6 +20,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     //MARK: Properties
     var mapCenterLocation: CLLocationCoordinate2D?
     
+    /* Devices Unique ID to distinguish my catches from other user's catches */
+    var userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+    
     
     //MARK: View Controller Lifecycle
     override func viewDidLoad() {

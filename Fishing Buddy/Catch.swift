@@ -21,8 +21,8 @@ class Catch: NSManagedObject {
     
     @NSManaged var species: String                  //Type of fish (i.e. largemouth bass, bream, crappie, etc)
     @NSManaged var weight: Double                   //Weight of the catch (lbs)
-    @NSManaged var baitType: String?                 //Type of bait used (i.e. plastic worm, crankbait, etc)
-    @NSManaged var baitColor: String?                //Color of bait used
+    @NSManaged var baitType: String                 //Type of bait used (i.e. plastic worm, crankbait, etc)
+    @NSManaged var baitColor: String                //Color of bait used
     @NSManaged var share: Bool                      //Allow others to see the catch (post in Firebase DB)
     
     
@@ -47,6 +47,19 @@ class Catch: NSManagedObject {
         }
     }
     
+    var jsonDictionary : NSDictionary {
+        
+        get {
+            let catchJSON: NSDictionary = ["latitude": latitude,
+                             "longitude": longitude,
+                             "species": species,
+                             "weight": weight,
+                             "baitType": baitType,
+                             "baitColor": baitColor]
+            return catchJSON
+        }
+        
+    }
     
     //MARK: Initializer
     
@@ -54,7 +67,7 @@ class Catch: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init(lat: Double, long: Double, species: String, weight: Double, baitType: String?, baitColor: String?, share: Bool, context: NSManagedObjectContext) {
+    init(lat: Double, long: Double, species: String, weight: Double, baitType: String, baitColor: String, share: Bool, context: NSManagedObjectContext) {
         
         // Core Data
         let entity =  NSEntityDescription.entityForName("Catch", inManagedObjectContext: context)!
@@ -63,20 +76,12 @@ class Catch: NSManagedObject {
         //Get the devices Unique ID to distinguish this catch from other user's catches
         self.userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
         
-        print("\(self.userDeviceID)")
-        
         self.latitude = lat
         self.longitude = long
         self.species = species
         self.weight = weight
-        
-        if let _ = baitType {
-            self.baitType = baitType
-        }
-        
-        if let _ = baitColor {
-            self.baitColor = baitColor
-        }
+        self.baitType = baitType
+        self.baitColor = baitColor
         
         self.share = share
         

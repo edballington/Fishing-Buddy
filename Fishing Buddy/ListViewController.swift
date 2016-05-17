@@ -81,7 +81,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.catchImage.image = UIImage(named: fish.species)
         cell.species.text = fish.species
         cell.weight.text = "\(fish.weightPounds) lbs \(fish.weightOunces) oz"
-        cell.lureTypeAndColor.text = "\(fish.baitColor!) \(fish.baitType!)"
+        cell.lureTypeAndColor.text = "\(fish.baitColor) \(fish.baitType)"
         
         return cell
         
