@@ -41,8 +41,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //MARK: - Actions
    
-    @IBAction func filterTableView(sender: AnyObject) {
-    }
     
     @IBAction func refreshTableView(sender: AnyObject) {
         
@@ -87,6 +85,15 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section]
+            return currentSection.name
+        }
+        return nil
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         
@@ -118,7 +125,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         fetchRequest.sortDescriptors = []
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                                   managedObjectContext: self.sharedContext,
-                                                                  sectionNameKeyPath: nil,
+                                                                  sectionNameKeyPath: "catchOrigin",
                                                                   cacheName: nil)
         
         return fetchedResultsController

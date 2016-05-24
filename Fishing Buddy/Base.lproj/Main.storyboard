@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--MapViewController-->
@@ -23,17 +22,28 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EYn-QN-m21">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </mapView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2lu-VJ-izV">
+                                <rect key="frame" x="282" y="282" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="EYn-QN-m21" secondAttribute="bottom" id="2XD-GL-c8g"/>
                             <constraint firstItem="EYn-QN-m21" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="3g9-am-gGq"/>
+                            <constraint firstItem="2lu-VJ-izV" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="Aa7-Lf-Bmg"/>
                             <constraint firstAttribute="trailing" secondItem="EYn-QN-m21" secondAttribute="trailing" id="iu0-L8-l38"/>
+                            <constraint firstItem="2lu-VJ-izV" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="yb9-Lj-PPZ"/>
                             <constraint firstItem="EYn-QN-m21" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="zb7-YJ-Ho0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Fishing Buddy" id="MbT-Mw-RNt">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="PdA-g0-2SJ"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="Zb9-NC-Ja7">
+                            <connections>
+                                <action selector="refreshMapView:" destination="9pv-A4-QxB" id="v41-Dr-JQA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eCk-vj-QfD">
                             <connections>
                                 <segue destination="FXy-FY-xpw" kind="show" identifier="AddCatchFromMapSegue" id="a99-3X-SUC"/>
@@ -42,6 +52,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="EYn-QN-m21" id="r04-GM-9x0"/>
+                        <outlet property="progressIndicator" destination="2lu-VJ-izV" id="9fP-kH-ZrT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -146,18 +157,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Fishing Buddy" id="HqI-Mh-dZt">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="YK2-lc-6QL"/>
-                        <leftBarButtonItems>
-                            <barButtonItem title="Filter" id="x9B-Ev-xnL">
-                                <connections>
-                                    <action selector="filterTableView:" destination="8rJ-Kc-sve" id="1tx-ei-mUn"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="uWV-VF-Jss">
-                                <connections>
-                                    <action selector="refreshTableView:" destination="8rJ-Kc-sve" id="TPC-V0-BnZ"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="uWV-VF-Jss">
+                            <connections>
+                                <action selector="refreshTableView:" destination="8rJ-Kc-sve" id="TPC-V0-BnZ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ftC-Aa-3lB">
                             <connections>
                                 <segue destination="FXy-FY-xpw" kind="show" identifier="AddCatchFromListSegue" id="gnH-mE-PNe"/>

@@ -15,6 +15,7 @@ class Catch: NSManagedObject {
     //MARK: Properties
     
     @NSManaged var userDeviceID: String            //String representing the user's unique Device ID
+    @NSManaged var catchOrigin: String              //Who caught this - either "My Catches" or "Other People's Catches"
     
     @NSManaged var latitude: Double                //Latitude of the catch
     @NSManaged var longitude: Double               //Longitude of the catch
@@ -67,14 +68,16 @@ class Catch: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init(lat: Double, long: Double, species: String, weight: Double, baitType: String, baitColor: String, share: Bool, context: NSManagedObjectContext) {
+    init(origin: String, userDeviceID: String, lat: Double, long: Double, species: String, weight: Double, baitType: String, baitColor: String, share: Bool, context: NSManagedObjectContext) {
         
         // Core Data
         let entity =  NSEntityDescription.entityForName("Catch", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
-        //Get the devices Unique ID to distinguish this catch from other user's catches
-        self.userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+        //Set the devices Unique ID to distinguish this catch from other user's catches
+        self.userDeviceID = userDeviceID
+        
+        self.catchOrigin = origin   //Who caught this? Me or someone else
         
         self.latitude = lat
         self.longitude = long

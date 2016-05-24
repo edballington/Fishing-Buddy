@@ -40,6 +40,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     /* Devices Unique ID to distinguish this catch from other user's catches */
     var userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
     
+    var pickerSelection = String()
 
     
     //MARK: Outlets
@@ -51,9 +52,6 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var lureColorTextField: UITextField!
     @IBOutlet weak var shareCatchSwitch: UISwitch!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    
-    var pickerSelection = String()
     
     
     //MARK: View Controller Lifecycle
@@ -97,7 +95,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
         
         //Initialize a new Catch Object from the entered data
-        let fish = Catch(lat: self.catchAnnotation.coordinate.latitude, long: self.catchAnnotation.coordinate.longitude, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField.text!, baitColor: lureColorTextField.text!, share: shareCatchSwitch.on, context: sharedContext)
+        let fish = Catch(origin: "My Catches", userDeviceID: UIDevice.currentDevice().identifierForVendor!.UUIDString, lat: self.catchAnnotation.coordinate.latitude, long: self.catchAnnotation.coordinate.longitude, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField.text!, baitColor: lureColorTextField.text!, share: shareCatchSwitch.on, context: sharedContext)
     
         //Save Catch object to Core Data if everything OK
         CoreDataStackManager.sharedInstance().saveContext()
@@ -213,15 +211,19 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         if speciesTextField.isFirstResponder() {
             speciesTextField.text = (pickerSelection != "") ? pickerSelection : speciesPickerValues[0]
+            pickerSelection = ""
             speciesTextField.resignFirstResponder()
         } else if lureTextField.isFirstResponder() {
             lureTextField.text = (pickerSelection != "") ? pickerSelection : lurePickerValues[0]
+            pickerSelection = ""
             lureTextField.resignFirstResponder()
         } else if weightTextField.isFirstResponder() {
             weightTextField.text = pickerSelection
+            pickerSelection = ""
             weightTextField.resignFirstResponder()
         } else if lureColorTextField.isFirstResponder() {
             lureColorTextField.text = pickerSelection
+            pickerSelection = ""
             lureColorTextField.resignFirstResponder()
         }
         

@@ -13,26 +13,40 @@ import CoreLocation
 import Firebase
 
 class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate {
-
+    
     //MARK: Outlets
+    
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
+    
+    
+    //MARK: Actions
+    
+    @IBAction func refreshMapView(sender: AnyObject) {
+        refreshCatches()
+    }
     
     
     //MARK: Properties
+    
     var mapCenterLocation: CLLocationCoordinate2D?
+    
+    
+    //MARK: Constants
+    
     let firebaseRef = Firebase(url: "https://blistering-heat-7872.firebaseio.com/")
     
     /* Devices Unique ID to distinguish my catches from other user's catches */
-    var userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+    let userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
     
     
     //MARK: View Controller Lifecycle
+    
     override func viewDidLoad() {
+        
+        //Do these things once when the app first starts up
         super.viewDidLoad()
-        
         mapView.delegate = self
-        
-        getCatchesFromFirebase()
         
         setMapInitialState()
     
@@ -40,15 +54,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     
     override func viewWillAppear(animated: Bool) {
         
+        //Do these things every time the mapview appears
+        super.viewWillAppear(true)
+        
         //If a center coordinate has been set then change to it - otherwise leave map as is
         if let mapCoordinate = mapCenterLocation {
             self.mapView.setCenterCoordinate(mapCoordinate, animated: true)
         }
         
-        // Load catches from Fetched Results Controller and add to map if there are any
-        if let catches = fetchAllCatches() {
-            addCatchesToMap(catches)
-        }
+        refreshCatches()
         
     }
 
@@ -57,11 +71,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     func setMapInitialState() {
         
         mapView.showsUserLocation = true
-        //self.mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
         
     }
     
-    /* Retrieves all Catch objects from Fetched Results Controller */
+    /* Retrieves all Catch objects from Core Data */
     func fetchAllCatches() -> [Catch]? {
 
         var foundCatches = [Catch]()
@@ -84,14 +97,67 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         return foundCatches
     }
     
+    /* Refresh catches and load from Firebase */
+    func refreshCatches() {
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.progressIndicator.startAnimating()
+        }
+        
+        // Load catches from Core Data and add to map if there are any
+        if let catches = fetchAllCatches() {
+            
+            /* First delete all of the catches in the managed object context that aren't mine so they won't get downloaded twice */
+            for fish in catches {
+                if fish.userDeviceID != self.userDeviceID {
+                    
+                    let otherFish = fish as NSManagedObject
+                    self.sharedContext.deleteObject(otherFish)
+                }
+            }
+            
+            /* Second, save the context after deletion */
+            CoreDataStackManager.sharedInstance().saveContext()
+            
+        }
+        
+        /* Third, get a new set of other user's catches from Firebase - when done loading then add all catches to the map */
+        getCatchesFromFirebase({ (success) in
+            if success {
+                let newCatches = self.fetchAllCatches()
+                
+                self.addCatchesToMap(newCatches!)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.progressIndicator.stopAnimating()
+                })
+            }
+        })
+        
+    }
+    
     /* Add Catches to mapView from array */
     func addCatchesToMap(catches: [Catch]) {
         
+        /* First remove any existing pins so they don't get added again on top of old ones */
+        dispatch_async(dispatch_get_main_queue()) {
+            self.mapView.removeAnnotations(self.mapView.annotations)
+        }
+        
+        var catchPinColor: UIColor
+        
         for fish in catches {
             
-            let annotation = CatchAnnotation(species: fish.species, weight: "\(fish.weightPounds) lbs \(fish.weightOunces) oz", lureTypeAndColor: "\(fish.baitType) \(fish.baitColor)", coordinate: fish.coordinate)
+            if fish.catchOrigin == "My Catches" {
+                catchPinColor = UIColor.greenColor()
+            } else {
+                catchPinColor = UIColor.redColor()
+            }
+            
+            let annotation = CatchAnnotation(pinColor: catchPinColor , species: fish.species, weight: "\(fish.weightPounds) lbs \(fish.weightOunces) oz", lureTypeAndColor: "\(fish.baitType) \(fish.baitColor)", coordinate: fish.coordinate)
             
             let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "catchPin")
+            
             annotationView.animatesDrop = true
             annotationView.draggable = false
             
@@ -111,45 +177,39 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    /* Method to query other user's catches from Firebase db and store them in Fetched Results Controller */
-    func getCatchesFromFirebase() {
+    /* Method to query other user's catches from Firebase db and store them in Core Data */
+    func getCatchesFromFirebase(completion: (success: Bool) -> Void) {
         
-        //TODO: - Pull all of the other user's catches and store in an array of dictionaries
         firebaseRef.childByAppendingPath("users").queryOrderedByChild("users").observeSingleEventOfType(.Value, withBlock: { firebaseSnapshot in
             
             if let catchDictionary = firebaseSnapshot.value as? NSDictionary {
                 
                 for (user, catches) in catchDictionary {
                     //Only get the catch data for the other users
-                    if user as! String != self.userDeviceID {
+                    if (user as! String) != self.userDeviceID {
                         
-                        //Iterate over all of the other users catches
+                        //Iterate over all of their catches
                         for fish in (catches as! NSDictionary) {
                             
-                            let fishDictionary = fish.value as! NSDictionary
+                            let fishDictionary = (fish.value as! NSDictionary)
                             
                                 //Create a new Catch Object in shared context from the retrieved dictionary
-                                let otherFish = Catch(lat: fishDictionary["latitude"] as! Double, long: fishDictionary["longitude"] as! Double, species: fishDictionary["species"] as! String, weight: fishDictionary["weight"] as! Double, baitType: fishDictionary["baitType"] as! String, baitColor: fishDictionary["baitColor"] as! String, share: true, context: self.sharedContext)
+                            let _ = Catch(origin: "Other People's Catches", userDeviceID: user as! String,lat: fishDictionary["latitude"] as! Double, long: fishDictionary["longitude"] as! Double, species: fishDictionary["species"] as! String, weight: fishDictionary["weight"] as! Double, baitType: fishDictionary["baitType"] as! String, baitColor: fishDictionary["baitColor"] as! String, share: true, context: self.sharedContext)
                             
                                 CoreDataStackManager.sharedInstance().saveContext()
                             
                         }
+                        
+                        completion(success: true)
                     }
                 }
                 
+            } else {
+                completion(success: false)
             }
         })
         
-        //TODO: - Iterate through the array of dictionaries and store each into shared context
-        
-        
-        /*
-        //Initialize a new Catch Object from the entered data
-        let fish = Catch(lat: self.catchAnnotation.coordinate.latitude, long: self.catchAnnotation.coordinate.longitude, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField.text!, baitColor: lureColorTextField.text!, share: shareCatchSwitch.on, context: sharedContext)
-        
-        //Save Catch object to Core Data if everything OK
-        CoreDataStackManager.sharedInstance().saveContext()
-         */
+
     }
     
     
@@ -167,6 +227,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
+                
+                let colorPointAnnotation = annotation as! CatchAnnotation
+                view.pinTintColor = colorPointAnnotation.pinColor
                 
                 //Assign the correct fish image based on the catch species value
                 let catchImage = UIImage(named: annotation.title!)

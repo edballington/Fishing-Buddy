@@ -11,12 +11,15 @@ import MapKit
 
 class CatchAnnotation: NSObject, MKAnnotation {
     
-    let title: String?
-    let weight: String
-    let lureTypeAndColor: String
-    let coordinate: CLLocationCoordinate2D
+    var pinColor: UIColor
+    var title: String?
+    var weight: String
+    var lureTypeAndColor: String
+    var coordinate: CLLocationCoordinate2D
     
-    init(species: String, weight: String, lureTypeAndColor: String, coordinate: CLLocationCoordinate2D) {
+    init(pinColor: UIColor, species: String, weight: String, lureTypeAndColor: String, coordinate: CLLocationCoordinate2D) {
+        
+        self.pinColor = pinColor
         self.title = species
         self.weight = weight
         self.lureTypeAndColor = lureTypeAndColor
