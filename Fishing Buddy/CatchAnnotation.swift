@@ -11,15 +11,15 @@ import MapKit
 
 class CatchAnnotation: NSObject, MKAnnotation {
     
-    var pinColor: UIColor
+    var origin: originType
     var title: String?
     var weight: String
     var lureTypeAndColor: String
     var coordinate: CLLocationCoordinate2D
     
-    init(pinColor: UIColor, species: String, weight: String, lureTypeAndColor: String, coordinate: CLLocationCoordinate2D) {
+    init(origin: originType, species: String, weight: String, lureTypeAndColor: String, coordinate: CLLocationCoordinate2D) {
         
-        self.pinColor = pinColor
+        self.origin = origin
         self.title = species
         self.weight = weight
         self.lureTypeAndColor = lureTypeAndColor
@@ -30,6 +30,25 @@ class CatchAnnotation: NSObject, MKAnnotation {
     
     var subtitle: String? {
         return weight
+    }
+    
+    func pinColor() -> UIColor {
+        switch origin {
+        case originType.MyCatch:
+            
+            let myCatchColor = NSUserDefaults.standardUserDefaults().integerForKey(MY_CATCH_PIN_COLOR_KEY)
+            if myCatchColor == 0 { return UIColor.greenColor() }
+            else if myCatchColor == 1 { return UIColor.blueColor() }
+            else { return UIColor.redColor() }
+            
+        case originType.OtherCatch:
+            
+            let otherCatchColor = NSUserDefaults.standardUserDefaults().integerForKey(OTHER_CATCH_PIN_COLOR_KEY)
+            if otherCatchColor == 0 { return UIColor.greenColor() }
+            else if otherCatchColor == 1 { return UIColor.blueColor() }
+            else { return UIColor.redColor() }
+            
+        }
     }
 
 }

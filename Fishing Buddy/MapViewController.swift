@@ -34,10 +34,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     
     //MARK: Constants
     
-    let firebaseRef = Firebase(url: "https://blistering-heat-7872.firebaseio.com/")
-    
     /* Devices Unique ID to distinguish my catches from other user's catches */
     let userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+    let pinID = "catchPin"
     
     
     //MARK: View Controller Lifecycle
@@ -46,10 +45,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         //Do these things once when the app first starts up
         super.viewDidLoad()
+        
         mapView.delegate = self
         
         setMapInitialState()
-    
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -70,7 +70,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     //MARK: Convenience Methods
     func setMapInitialState() {
         
-        mapView.showsUserLocation = true
+        mapView.showsUserLocation = NSUserDefaults.standardUserDefaults().boolForKey(USER_LOCATION_SWITCH_KEY)
         
     }
     
@@ -109,10 +109,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             
             /* First delete all of the catches in the managed object context that aren't mine so they won't get downloaded twice */
             for fish in catches {
+                
                 if fish.userDeviceID != self.userDeviceID {
                     
                     let otherFish = fish as NSManagedObject
                     self.sharedContext.deleteObject(otherFish)
+                    
                 }
             }
             
@@ -123,7 +125,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         /* Third, get a new set of other user's catches from Firebase - when done loading then add all catches to the map */
         getCatchesFromFirebase({ (success) in
-            if success {
+            
                 let newCatches = self.fetchAllCatches()
                 
                 self.addCatchesToMap(newCatches!)
@@ -131,7 +133,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
                 dispatch_async(dispatch_get_main_queue(), {
                     self.progressIndicator.stopAnimating()
                 })
-            }
+            
         })
         
     }
@@ -144,25 +146,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             self.mapView.removeAnnotations(self.mapView.annotations)
         }
         
-        var catchPinColor: UIColor
+        var catchPinColor = UIColor()
+        var origin: originType
         
         for fish in catches {
             
             if fish.catchOrigin == "My Catches" {
+                origin = originType.MyCatch
                 catchPinColor = UIColor.greenColor()
             } else {
+                origin = originType.OtherCatch
                 catchPinColor = UIColor.redColor()
             }
             
-            let annotation = CatchAnnotation(pinColor: catchPinColor , species: fish.species, weight: "\(fish.weightPounds) lbs \(fish.weightOunces) oz", lureTypeAndColor: "\(fish.baitType) \(fish.baitColor)", coordinate: fish.coordinate)
+            let annotation = CatchAnnotation(origin: origin , species: fish.species, weight: "\(fish.weightPounds) lbs \(fish.weightOunces) oz", lureTypeAndColor: "\(fish.baitType) \(fish.baitColor)", coordinate: fish.coordinate)
             
-            let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "catchPin")
+            let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: pinID)
             
+            annotationView.pinTintColor = catchPinColor
             annotationView.animatesDrop = true
             annotationView.draggable = false
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.mapView.addAnnotation(annotation)
+                print("Added annotation to map - \(annotation.origin) for species \(annotation.title) with color \(annotation.pinColor())")
             })
             
         }
@@ -200,9 +207,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
                             
                         }
                         
-                        completion(success: true)
                     }
                 }
+                
+                completion(success: true)
                 
             } else {
                 completion(success: false)
@@ -218,18 +226,26 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         if let annotation = annotation as? CatchAnnotation {
-            let identifier = "catchPin"
+            
+            print("Annotation origin is:\(annotation.origin)")
+            print("Species is: \(annotation.title)")
+            
+            let identifier = pinID
             var view: MKPinAnnotationView
             
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
+                
+                print("Successfully dequed a view - pinColor = \((annotation as! CatchAnnotation).pinColor())")
+                
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 
-                let colorPointAnnotation = annotation as! CatchAnnotation
-                view.pinTintColor = colorPointAnnotation.pinColor
+                print("Can't deque a annotationView - pinColor = \(annotation.pinColor())")
+                
+                view.pinTintColor = annotation.pinColor()
                 
                 //Assign the correct fish image based on the catch species value
                 let catchImage = UIImage(named: annotation.title!)

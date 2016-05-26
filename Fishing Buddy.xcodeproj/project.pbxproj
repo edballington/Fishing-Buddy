@@ -10,6 +10,7 @@
 		74F16E9214CC40C3BCE3C184 /* Pods_Fishing_BuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11375FBB734C3D535A2CA2A9 /* Pods_Fishing_BuddyTests.framework */; };
 		761704911CE271E400C3E500 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761704901CE271E400C3E500 /* SettingsViewController.swift */; };
 		7624F3C31CDC46DC00165BD7 /* CatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */; };
+		762F16D21CF67C9900B5B07C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F16D11CF67C9900B5B07C /* Constants.swift */; };
 		763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */; };
 		763632D91CB1FE2400A3EF43 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */; };
 		763632DB1CB1FE5600A3EF43 /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632DA1CB1FE5600A3EF43 /* Catch.swift */; };
@@ -58,6 +59,7 @@
 		344D8772AA15AD529841E090 /* Pods-Fishing BuddyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyUITests/Pods-Fishing BuddyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		761704901CE271E400C3E500 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchTableViewCell.swift; sourceTree = "<group>"; };
+		762F16D11CF67C9900B5B07C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCatchViewController.swift; sourceTree = "<group>"; };
 		763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		763632DA1CB1FE5600A3EF43 /* Catch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Catch.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		763632D71CB1CA5200A3EF43 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				762F16D11CF67C9900B5B07C /* Constants.swift */,
 				766CC7951CAABC8800C229D5 /* MapViewController.swift */,
 				76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */,
 				7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */,
@@ -493,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				766CC7981CAABC8800C229D5 /* ListViewController.swift in Sources */,
+				762F16D21CF67C9900B5B07C /* Constants.swift in Sources */,
 				763632DB1CB1FE5600A3EF43 /* Catch.swift in Sources */,
 				76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */,
 				76ED43AF1CDA2DB5004FB5B1 /* CatchAnnotation.swift in Sources */,

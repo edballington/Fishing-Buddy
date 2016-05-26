@@ -62,7 +62,7 @@
         <!--Settings-->
         <scene sceneID="d0a-BQ-YYf">
             <objects>
-                <viewController id="vNG-Th-DjT" userLabel="Settings" sceneMemberID="viewController">
+                <viewController id="vNG-Th-DjT" userLabel="Settings" customClass="SettingsViewController" customModule="Fishing_Buddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bMf-9G-dVg"/>
                         <viewControllerLayoutGuide type="bottom" id="cXJ-9S-AEg"/>
@@ -70,9 +70,77 @@
                     <view key="view" contentMode="scaleToFill" id="B1u-rL-BqL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MMB-Ag-Y5l">
+                                <rect key="frame" x="126" y="95" width="51" height="31"/>
+                                <connections>
+                                    <action selector="displayUserLocSwitchChanged:" destination="vNG-Th-DjT" eventType="valueChanged" id="WgT-gQ-4XG"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display user location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9p4-1R-RSf">
+                                <rect key="frame" x="183" y="100" width="159" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BWi-q0-Xkh">
+                                <rect key="frame" x="20" y="168" width="155" height="29"/>
+                                <segments>
+                                    <segment title="Green"/>
+                                    <segment title="Blue"/>
+                                    <segment title="Red"/>
+                                </segments>
+                                <connections>
+                                    <action selector="myCatchIndexChanged:" destination="vNG-Th-DjT" eventType="valueChanged" id="TIT-sp-jc6"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pin color for My Catches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMO-tt-SGt">
+                                <rect key="frame" x="183" y="171" width="188" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pin color for Other Users Catches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGT-ek-TPW">
+                                <rect key="frame" x="183" y="242" width="257" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ge4-6H-PCl">
+                                <rect key="frame" x="20" y="239" width="155" height="29"/>
+                                <segments>
+                                    <segment title="Green"/>
+                                    <segment title="Blue"/>
+                                    <segment title="Red"/>
+                                </segments>
+                                <connections>
+                                    <action selector="otherCatchIndexChanged:" destination="vNG-Th-DjT" eventType="valueChanged" id="zrx-zI-hZl"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FGT-ek-TPW" firstAttribute="centerY" secondItem="ge4-6H-PCl" secondAttribute="centerY" id="2qL-dd-Em5"/>
+                            <constraint firstItem="eMO-tt-SGt" firstAttribute="leading" secondItem="BWi-q0-Xkh" secondAttribute="trailing" constant="8" symbolic="YES" id="6Aa-nH-Dfl"/>
+                            <constraint firstItem="FGT-ek-TPW" firstAttribute="top" secondItem="eMO-tt-SGt" secondAttribute="bottom" constant="50" id="8do-Jj-dKA"/>
+                            <constraint firstItem="FGT-ek-TPW" firstAttribute="leading" secondItem="9p4-1R-RSf" secondAttribute="leading" id="BOG-3d-LSH"/>
+                            <constraint firstItem="eMO-tt-SGt" firstAttribute="top" secondItem="9p4-1R-RSf" secondAttribute="bottom" constant="50" id="Def-Fw-0K6"/>
+                            <constraint firstItem="9p4-1R-RSf" firstAttribute="centerY" secondItem="MMB-Ag-Y5l" secondAttribute="centerY" id="OPn-4K-mcj"/>
+                            <constraint firstItem="ge4-6H-PCl" firstAttribute="leading" secondItem="B1u-rL-BqL" secondAttribute="leading" constant="20" symbolic="YES" id="QXn-jE-amq"/>
+                            <constraint firstItem="9p4-1R-RSf" firstAttribute="leading" secondItem="MMB-Ag-Y5l" secondAttribute="trailing" constant="8" symbolic="YES" id="Yiq-Il-zdH"/>
+                            <constraint firstItem="eMO-tt-SGt" firstAttribute="leading" secondItem="9p4-1R-RSf" secondAttribute="leading" id="ZzU-bz-aLd"/>
+                            <constraint firstItem="FGT-ek-TPW" firstAttribute="leading" secondItem="ge4-6H-PCl" secondAttribute="trailing" constant="8" symbolic="YES" id="f96-Id-dSK"/>
+                            <constraint firstItem="eMO-tt-SGt" firstAttribute="centerY" secondItem="BWi-q0-Xkh" secondAttribute="centerY" id="lbH-m3-Cbz"/>
+                            <constraint firstItem="9p4-1R-RSf" firstAttribute="top" secondItem="bMf-9G-dVg" secondAttribute="bottom" constant="80" id="rYs-LS-DWH"/>
+                            <constraint firstItem="BWi-q0-Xkh" firstAttribute="leading" secondItem="B1u-rL-BqL" secondAttribute="leading" constant="20" symbolic="YES" id="sy5-ds-HNZ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="zHe-YY-LQJ" userLabel="Settings"/>
+                    <connections>
+                        <outlet property="myCatchPinColorControl" destination="BWi-q0-Xkh" id="glb-EN-1N6"/>
+                        <outlet property="otherCatchPinColorControl" destination="ge4-6H-PCl" id="VKT-pU-maq"/>
+                        <outlet property="showUserLocationSwitch" destination="MMB-Ag-Y5l" id="mWh-EE-DQ7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hvv-jq-bfo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

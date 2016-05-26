@@ -19,6 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        //Register default settings values for the first time app is launched before they are set by the user
+        
+        let defaults: [String:AnyObject] = [
+            USER_LOCATION_SWITCH_KEY: true,
+            MY_CATCH_PIN_COLOR_KEY: 0,
+            OTHER_CATCH_PIN_COLOR_KEY: 2
+        ]
+        NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
+        
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         

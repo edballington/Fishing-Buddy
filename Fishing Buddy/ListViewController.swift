@@ -99,6 +99,16 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+/*    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == .Delete {
+            self.sharedContext.deleteObject(fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+        
+    }
+ */
+    
     
     // MARK: - Convenience Methods
     
