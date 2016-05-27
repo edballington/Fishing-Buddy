@@ -36,7 +36,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     
     /* Devices Unique ID to distinguish my catches from other user's catches */
     let userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
-    let pinID = "catchPin"
+    let myCatchPinID = "myCatchPin"
+    let otherCatchPinID = "otherCatchPin"
     
     
     //MARK: View Controller Lifecycle
@@ -146,17 +147,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             self.mapView.removeAnnotations(self.mapView.annotations)
         }
         
-        var catchPinColor = UIColor()
+        var catchPinColor: UIColor
         var origin: originType
+        var pinID: String
         
         for fish in catches {
             
             if fish.catchOrigin == "My Catches" {
                 origin = originType.MyCatch
-                catchPinColor = UIColor.greenColor()
+                catchPinColor = fish.pinColor()
+                print("Add My catch pin color is \(catchPinColor)")
+                pinID = self.myCatchPinID
             } else {
                 origin = originType.OtherCatch
-                catchPinColor = UIColor.redColor()
+                catchPinColor = fish.pinColor()
+                print("Add Other catch pin color is \(catchPinColor)")
+                pinID = self.otherCatchPinID
             }
             
             let annotation = CatchAnnotation(origin: origin , species: fish.species, weight: "\(fish.weightPounds) lbs \(fish.weightOunces) oz", lureTypeAndColor: "\(fish.baitType) \(fish.baitColor)", coordinate: fish.coordinate)
@@ -169,7 +175,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.mapView.addAnnotation(annotation)
-                print("Added annotation to map - \(annotation.origin) for species \(annotation.title) with color \(annotation.pinColor())")
             })
             
         }
@@ -201,7 +206,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
                             let fishDictionary = (fish.value as! NSDictionary)
                             
                                 //Create a new Catch Object in shared context from the retrieved dictionary
-                            let _ = Catch(origin: "Other People's Catches", userDeviceID: user as! String,lat: fishDictionary["latitude"] as! Double, long: fishDictionary["longitude"] as! Double, species: fishDictionary["species"] as! String, weight: fishDictionary["weight"] as! Double, baitType: fishDictionary["baitType"] as! String, baitColor: fishDictionary["baitColor"] as! String, share: true, context: self.sharedContext)
+                            let _ = Catch(origin: otherCatchString, userDeviceID: user as! String, autoID: fish.key as! String, lat: fishDictionary["latitude"] as! Double, long: fishDictionary["longitude"] as! Double, species: fishDictionary["species"] as! String, weight: fishDictionary["weight"] as! Double, baitType: fishDictionary["baitType"] as! String, baitColor: fishDictionary["baitColor"] as! String, share: true, context: self.sharedContext)
                             
                                 CoreDataStackManager.sharedInstance().saveContext()
                             
@@ -227,23 +232,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         if let annotation = annotation as? CatchAnnotation {
             
-            print("Annotation origin is:\(annotation.origin)")
-            print("Species is: \(annotation.title)")
-            
-            let identifier = pinID
+            var pinID: String
             var view: MKPinAnnotationView
             
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView {
+            print("View for Annotation - Origin = \(annotation.origin) - color = \(annotation.pinColor())")
+            
+            if annotation.origin == originType.MyCatch { pinID = myCatchPinID }
+            else { pinID = otherCatchPinID }
+            
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(pinID) as? MKPinAnnotationView {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
                 
-                print("Successfully dequed a view - pinColor = \((annotation as! CatchAnnotation).pinColor())")
+                print("Dequed a view for catch origin - \(annotation.origin) - pin color \(annotation.pinColor())")
                 
             } else {
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: pinID)
                 view.canShowCallout = true
-                
-                print("Can't deque a annotationView - pinColor = \(annotation.pinColor())")
                 
                 view.pinTintColor = annotation.pinColor()
                 

@@ -15,6 +15,7 @@ class Catch: NSManagedObject {
     //MARK: Properties
     
     @NSManaged var userDeviceID: String            //String representing the user's unique Device ID
+    @NSManaged var autoID: String                   //String representing autoID generated in Firebase as a key to reference this catch
     @NSManaged var catchOrigin: String              //Who caught this - either "My Catches" or "Other People's Catches"
     
     @NSManaged var latitude: Double                //Latitude of the catch
@@ -68,7 +69,7 @@ class Catch: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init(origin: String, userDeviceID: String, lat: Double, long: Double, species: String, weight: Double, baitType: String, baitColor: String, share: Bool, context: NSManagedObjectContext) {
+    init(origin: String, userDeviceID: String, autoID: String, lat: Double, long: Double, species: String, weight: Double, baitType: String, baitColor: String, share: Bool, context: NSManagedObjectContext) {
         
         // Core Data
         let entity =  NSEntityDescription.entityForName("Catch", inManagedObjectContext: context)!
@@ -76,6 +77,9 @@ class Catch: NSManagedObject {
         
         //Set the devices Unique ID to distinguish this catch from other user's catches
         self.userDeviceID = userDeviceID
+        
+        //Set the autoID as a key to this catch in Firebase once the Firebase entry is made - used to find it in Firebase later
+        self.autoID = autoID 
         
         self.catchOrigin = origin   //Who caught this? Me or someone else
         
@@ -88,6 +92,31 @@ class Catch: NSManagedObject {
         
         self.share = share
         
+    }
+    
+    func pinColor() -> UIColor {
+        
+        switch catchOrigin {
+        case myCatchString:
+            
+            let myCatchColor = NSUserDefaults.standardUserDefaults().integerForKey(MY_CATCH_PIN_COLOR_KEY)
+            if myCatchColor == 0 { return UIColor.greenColor() }
+            else if myCatchColor == 1 { return UIColor.blueColor() }
+            else { return UIColor.redColor() }
+            
+        case otherCatchString:
+            
+            let otherCatchColor = NSUserDefaults.standardUserDefaults().integerForKey(OTHER_CATCH_PIN_COLOR_KEY)
+            if otherCatchColor == 0 { return UIColor.greenColor() }
+            else if otherCatchColor == 1 { return UIColor.blueColor() }
+            else { return UIColor.redColor() }
+            
+        default:
+            
+            return UIColor.redColor()
+            
+        }
+
     }
     
 }

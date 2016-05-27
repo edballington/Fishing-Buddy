@@ -72,6 +72,10 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @IBAction func saveCatch(sender: AnyObject) {
         
+        var userRef: Firebase!
+        var newCatchRef: Firebase!
+        var autoIDString: String
+        
         //Check that mandatory fields are completed and display alertView for any that aren't
         
         guard (speciesTextField.text) != "" else {
@@ -94,16 +98,23 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             return
         }
         
+        //Generate a Firebase autoID as a key to the catch object if sharing is enabled
+        if shareCatchSwitch.on {
+            userRef = firebaseRef.childByAppendingPath("users").childByAppendingPath(userDeviceID)
+            newCatchRef = userRef.childByAutoId()
+            autoIDString = (NSURL.init(string: newCatchRef.description())?.lastPathComponent)!
+        } else {
+            autoIDString = ""       //Blank string since no autoID is generated since catch not stored in Firebase
+        }
+        
         //Initialize a new Catch Object from the entered data
-        let fish = Catch(origin: "My Catches", userDeviceID: UIDevice.currentDevice().identifierForVendor!.UUIDString, lat: self.catchAnnotation.coordinate.latitude, long: self.catchAnnotation.coordinate.longitude, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField.text!, baitColor: lureColorTextField.text!, share: shareCatchSwitch.on, context: sharedContext)
+        let fish = Catch(origin: myCatchString, userDeviceID: UIDevice.currentDevice().identifierForVendor!.UUIDString, autoID: autoIDString, lat: self.catchAnnotation.coordinate.latitude, long: self.catchAnnotation.coordinate.longitude, species: speciesTextField.text!, weight: weightDecimalValue!, baitType: lureTextField.text!, baitColor: lureColorTextField.text!, share: shareCatchSwitch.on, context: sharedContext)
     
         //Save Catch object to Core Data if everything OK
         CoreDataStackManager.sharedInstance().saveContext()
         
         //Save Catch object to Firebase db if 'Share' is enabled
-        if fish.share {
-            let userRef = firebaseRef.childByAppendingPath("users").childByAppendingPath(userDeviceID)
-            let newCatchRef = userRef.childByAutoId()
+        if shareCatchSwitch.on {
             newCatchRef.setValue(fish.jsonDictionary)
         }
         

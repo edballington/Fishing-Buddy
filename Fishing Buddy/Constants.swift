@@ -14,8 +14,12 @@ enum originType {
     case OtherCatch
 }
 
+let myCatchString = "My Catches"
+let otherCatchString = "Other People's Catches"
+
 let USER_LOCATION_SWITCH_KEY = "enableUserLocation"
 let MY_CATCH_PIN_COLOR_KEY = "myCatchPinColor"
 let OTHER_CATCH_PIN_COLOR_KEY = "otherCatchPinColor"
 
 let firebaseRef = Firebase(url: "https://blistering-heat-7872.firebaseio.com/")
+
