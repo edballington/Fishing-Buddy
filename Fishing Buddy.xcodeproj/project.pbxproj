@@ -22,6 +22,9 @@
 		766CC7A01CAABC8800C229D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766CC79E1CAABC8800C229D5 /* LaunchScreen.storyboard */; };
 		766CC7AB1CAABC8800C229D5 /* Fishing_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7AA1CAABC8800C229D5 /* Fishing_BuddyTests.swift */; };
 		766CC7B61CAABC8800C229D5 /* Fishing_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */; };
+		769B80221CF8E885006B1882 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 769B80211CF8E885006B1882 /* GoogleService-Info.plist */; };
+		769B80231CF8E885006B1882 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 769B80211CF8E885006B1882 /* GoogleService-Info.plist */; };
+		769B80241CF8E885006B1882 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 769B80211CF8E885006B1882 /* GoogleService-Info.plist */; };
 		76A62F121CEDEF09009760F7 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F111CEDEF09009760F7 /* Firebase.framework */; };
 		76A62F141CEDEFBB009760F7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F131CEDEFBB009760F7 /* CFNetwork.framework */; };
 		76A62F161CEDEFC6009760F7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F151CEDEFC6009760F7 /* Security.framework */; };
@@ -77,6 +80,7 @@
 		766CC7B11CAABC8800C229D5 /* Fishing BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fishing BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fishing_BuddyUITests.swift; sourceTree = "<group>"; };
 		766CC7B71CAABC8800C229D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		769B80211CF8E885006B1882 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		76A62F111CEDEF09009760F7 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		76A62F131CEDEFBB009760F7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		76A62F151CEDEFC6009760F7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -179,6 +183,7 @@
 		766CC7871CAABC8700C229D5 = {
 			isa = PBXGroup;
 			children = (
+				769B80211CF8E885006B1882 /* GoogleService-Info.plist */,
 				766CC7921CAABC8800C229D5 /* Fishing Buddy */,
 				766CC7A91CAABC8800C229D5 /* Fishing BuddyTests */,
 				766CC7B41CAABC8800C229D5 /* Fishing BuddyUITests */,
@@ -346,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				766CC7A01CAABC8800C229D5 /* LaunchScreen.storyboard in Resources */,
+				769B80221CF8E885006B1882 /* GoogleService-Info.plist in Resources */,
 				766CC79D1CAABC8800C229D5 /* Assets.xcassets in Resources */,
 				766CC79B1CAABC8800C229D5 /* Main.storyboard in Resources */,
 			);
@@ -355,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				769B80231CF8E885006B1882 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +369,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				769B80241CF8E885006B1882 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             OTHER_CATCH_PIN_COLOR_KEY: 2
         ]
         NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
+        
+        //Configure FIRApp shared instance for Firebase
+        FIRApp.configure()
+        
+        //Enable disk persistence via Firebase
+        FIRDatabase.database().persistenceEnabled = true
         
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()

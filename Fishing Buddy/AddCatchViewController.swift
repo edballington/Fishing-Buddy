@@ -21,8 +21,6 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     let lureColorPickerValues = [["Black", "Blue", "Purple", "Chartreuse", "Pumpkin", "Watermelon", "Red", "Pink", "White", "Yellow", "Green"], ["Black", "Blue", "Purple", "Chartreuse", "Pumpkin", "Watermelon", "Red", "Pink", "White", "Yellow", "Green"]]
     let weightPickerValues = [["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25"], ["lbs"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], ["oz"]]
     
-    let firebaseRef = Firebase(url: "https://blistering-heat-7872.firebaseio.com/")
-    
     enum pickerViewTag: Int {       //Used to identify the various picker views when calling the delegate and datasource methods
         case speciesPicker = 0
         case lurePicker = 1
@@ -72,8 +70,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @IBAction func saveCatch(sender: AnyObject) {
         
-        var userRef: Firebase!
-        var newCatchRef: Firebase!
+        var newCatchRef: FIRDatabaseReference
         var autoIDString: String
         
         //Check that mandatory fields are completed and display alertView for any that aren't
@@ -99,9 +96,9 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
         
         //Generate a Firebase autoID as a key to the catch object if sharing is enabled
+        newCatchRef = firebaseRef.child("users").child(userDeviceID).childByAutoId()
+        
         if shareCatchSwitch.on {
-            userRef = firebaseRef.childByAppendingPath("users").childByAppendingPath(userDeviceID)
-            newCatchRef = userRef.childByAutoId()
             autoIDString = (NSURL.init(string: newCatchRef.description())?.lastPathComponent)!
         } else {
             autoIDString = ""       //Blank string since no autoID is generated since catch not stored in Firebase
