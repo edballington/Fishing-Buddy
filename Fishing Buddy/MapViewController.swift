@@ -51,8 +51,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         setMapInitialState()
         
-
+        //Set up Firebase connection state monitor
+        let connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
+        connectedRef.observeEventType(.Value, withBlock: {snapshot in
+            
+            let connected = snapshot.value as? Bool
+            if connected != nil && connected! {
+                self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
+                self.refreshCatches()
+            } else {
+                self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
+            }
         
+    })
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -92,7 +104,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             print("Error retrieving Catches from CoreData: \(error)")
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.showAlertView("Cannot load saved Catches")
+                self.showAlertView("Error", message: "Cannot load saved catches")
             })
         }
         
@@ -185,8 +197,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     }
     
     /* Method to display an alertView with a single OK button to acknowledge */
-    func showAlertView(message: String?) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    func showAlertView(title: String, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
