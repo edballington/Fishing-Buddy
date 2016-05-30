@@ -7,13 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		74F16E9214CC40C3BCE3C184 /* Pods_Fishing_BuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11375FBB734C3D535A2CA2A9 /* Pods_Fishing_BuddyTests.framework */; };
+		236173612FF44C9D0D61FDC7 /* Pods_Fishing_BuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F81C46325F37DAD910823B71 /* Pods_Fishing_BuddyTests.framework */; };
+		4FE0AF11D3F7F926E921B90B /* Pods_Fishing_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D853D948FB99C72AC2A686 /* Pods_Fishing_Buddy.framework */; };
 		761704911CE271E400C3E500 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761704901CE271E400C3E500 /* SettingsViewController.swift */; };
 		7624F3C31CDC46DC00165BD7 /* CatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */; };
 		762F16D21CF67C9900B5B07C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F16D11CF67C9900B5B07C /* Constants.swift */; };
 		763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */; };
 		763632D91CB1FE2400A3EF43 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */; };
 		763632DB1CB1FE5600A3EF43 /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632DA1CB1FE5600A3EF43 /* Catch.swift */; };
+		7636A9761CFBC50600A86B07 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9711CFBC50600A86B07 /* FirebaseAnalytics.framework */; };
+		7636A9771CFBC50600A86B07 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9721CFBC50600A86B07 /* FirebaseInstanceID.framework */; };
+		7636A9781CFBC50600A86B07 /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9731CFBC50600A86B07 /* GoogleInterchangeUtilities.framework */; };
+		7636A9791CFBC50600A86B07 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9741CFBC50600A86B07 /* GoogleSymbolUtilities.framework */; };
+		7636A97A1CFBC50600A86B07 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9751CFBC50600A86B07 /* GoogleUtilities.framework */; };
+		7636A97C1CFBC52C00A86B07 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A97B1CFBC52C00A86B07 /* FirebaseDatabase.framework */; };
+		7636A97E1CFBC62900A86B07 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A97D1CFBC62900A86B07 /* Firebase.framework */; };
+		76687E2D1CFBC86500FC765B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76687E2C1CFBC86500FC765B /* GoogleService-Info.plist */; };
 		766CC7941CAABC8800C229D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7931CAABC8800C229D5 /* AppDelegate.swift */; };
 		766CC7961CAABC8800C229D5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7951CAABC8800C229D5 /* MapViewController.swift */; };
 		766CC7981CAABC8800C229D5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7971CAABC8800C229D5 /* ListViewController.swift */; };
@@ -22,9 +31,6 @@
 		766CC7A01CAABC8800C229D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766CC79E1CAABC8800C229D5 /* LaunchScreen.storyboard */; };
 		766CC7AB1CAABC8800C229D5 /* Fishing_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7AA1CAABC8800C229D5 /* Fishing_BuddyTests.swift */; };
 		766CC7B61CAABC8800C229D5 /* Fishing_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */; };
-		769B80221CF8E885006B1882 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 769B80211CF8E885006B1882 /* GoogleService-Info.plist */; };
-		769B80231CF8E885006B1882 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 769B80211CF8E885006B1882 /* GoogleService-Info.plist */; };
-		769B80241CF8E885006B1882 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 769B80211CF8E885006B1882 /* GoogleService-Info.plist */; };
 		76A62F121CEDEF09009760F7 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F111CEDEF09009760F7 /* Firebase.framework */; };
 		76A62F141CEDEFBB009760F7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F131CEDEFBB009760F7 /* CFNetwork.framework */; };
 		76A62F161CEDEFC6009760F7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F151CEDEFC6009760F7 /* Security.framework */; };
@@ -33,8 +39,7 @@
 		76A62F1C1CEDF144009760F7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F1B1CEDF144009760F7 /* libc++.tbd */; };
 		76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76E478A41CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld */; };
 		76ED43AF1CDA2DB5004FB5B1 /* CatchAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */; };
-		7E78E021322C524795D202B7 /* Pods_Fishing_BuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782BE3F70ED1A949A46E250E /* Pods_Fishing_BuddyUITests.framework */; };
-		B322D3E30E147BA5EAE57FA7 /* Pods_Fishing_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B719231E3C36BBAD56A71E2 /* Pods_Fishing_Buddy.framework */; };
+		C314CDD9FA47F429C5982FAE /* Pods_Fishing_BuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EDCB7493224C2AAB4572D2 /* Pods_Fishing_BuddyUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,14 +60,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B719231E3C36BBAD56A71E2 /* Pods_Fishing_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		11375FBB734C3D535A2CA2A9 /* Pods_Fishing_BuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_BuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B8D75E60232BB37A05C1694 /* Pods-Fishing Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing Buddy/Pods-Fishing Buddy.release.xcconfig"; sourceTree = "<group>"; };
+		327DD7CA79A661DCD2A9B472 /* Pods-Fishing BuddyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyUITests/Pods-Fishing BuddyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		52E7073742C732E53DB6DB89 /* Pods-Fishing Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing Buddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing Buddy/Pods-Fishing Buddy.debug.xcconfig"; sourceTree = "<group>"; };
+		75C84C9D346B00AB8A252957 /* Pods-Fishing BuddyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyUITests/Pods-Fishing BuddyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		761704901CE271E400C3E500 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchTableViewCell.swift; sourceTree = "<group>"; };
 		762F16D11CF67C9900B5B07C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCatchViewController.swift; sourceTree = "<group>"; };
 		763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		763632DA1CB1FE5600A3EF43 /* Catch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Catch.swift; sourceTree = "<group>"; };
+		7636A9711CFBC50600A86B07 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		7636A9721CFBC50600A86B07 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		7636A9731CFBC50600A86B07 /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		7636A9741CFBC50600A86B07 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		7636A9751CFBC50600A86B07 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
+		7636A97B1CFBC52C00A86B07 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
+		7636A97D1CFBC62900A86B07 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		76687E2C1CFBC86500FC765B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		766CC7901CAABC8700C229D5 /* Fishing Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fishing Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766CC7931CAABC8800C229D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		766CC7951CAABC8800C229D5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +92,6 @@
 		766CC7B11CAABC8800C229D5 /* Fishing BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fishing BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fishing_BuddyUITests.swift; sourceTree = "<group>"; };
 		766CC7B71CAABC8800C229D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		769B80211CF8E885006B1882 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		76A62F111CEDEF09009760F7 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		76A62F131CEDEFBB009760F7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		76A62F151CEDEFC6009760F7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -86,13 +100,11 @@
 		76A62F1B1CEDF144009760F7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		76E478A51CBD6D6100F022A5 /* FishingBuddy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FishingBuddy.xcdatamodel; sourceTree = "<group>"; };
 		76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchAnnotation.swift; sourceTree = "<group>"; };
-		782BE3F70ED1A949A46E250E /* Pods_Fishing_BuddyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_BuddyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D204D27EFF25F089ADB6DB3 /* Pods-Fishing Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing Buddy/Pods-Fishing Buddy.release.xcconfig"; sourceTree = "<group>"; };
-		8D6952545C3D1011E5CA62B4 /* Pods-Fishing BuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9B48DEBA35B42F5CFB9CF8A2 /* Pods-Fishing BuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.release.xcconfig"; sourceTree = "<group>"; };
-		C31DE0A36934971AFE2E9E3A /* Pods-Fishing BuddyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyUITests/Pods-Fishing BuddyUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		D90B8AB94643B28196AFA4B0 /* Pods-Fishing Buddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing Buddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing Buddy/Pods-Fishing Buddy.debug.xcconfig"; sourceTree = "<group>"; };
-		F22E2E64952F8179B10C61C8 /* Pods-Fishing BuddyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyUITests/Pods-Fishing BuddyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		90EDCB7493224C2AAB4572D2 /* Pods_Fishing_BuddyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_BuddyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D853D948FB99C72AC2A686 /* Pods_Fishing_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00ED34D6EAB56A43410B5FE /* Pods-Fishing BuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.release.xcconfig"; sourceTree = "<group>"; };
+		C669285948CA1603750CD24B /* Pods-Fishing BuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F81C46325F37DAD910823B71 /* Pods_Fishing_BuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_BuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,13 +112,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7636A9761CFBC50600A86B07 /* FirebaseAnalytics.framework in Frameworks */,
+				7636A97C1CFBC52C00A86B07 /* FirebaseDatabase.framework in Frameworks */,
 				76A62F1C1CEDF144009760F7 /* libc++.tbd in Frameworks */,
+				7636A97E1CFBC62900A86B07 /* Firebase.framework in Frameworks */,
 				76A62F1A1CEDF0FD009760F7 /* libicucore.tbd in Frameworks */,
 				76A62F181CEDEFDC009760F7 /* SystemConfiguration.framework in Frameworks */,
+				7636A9791CFBC50600A86B07 /* GoogleSymbolUtilities.framework in Frameworks */,
+				7636A9771CFBC50600A86B07 /* FirebaseInstanceID.framework in Frameworks */,
+				7636A97A1CFBC50600A86B07 /* GoogleUtilities.framework in Frameworks */,
 				76A62F161CEDEFC6009760F7 /* Security.framework in Frameworks */,
 				76A62F141CEDEFBB009760F7 /* CFNetwork.framework in Frameworks */,
-				B322D3E30E147BA5EAE57FA7 /* Pods_Fishing_Buddy.framework in Frameworks */,
 				76A62F121CEDEF09009760F7 /* Firebase.framework in Frameworks */,
+				7636A9781CFBC50600A86B07 /* GoogleInterchangeUtilities.framework in Frameworks */,
+				4FE0AF11D3F7F926E921B90B /* Pods_Fishing_Buddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74F16E9214CC40C3BCE3C184 /* Pods_Fishing_BuddyTests.framework in Frameworks */,
+				236173612FF44C9D0D61FDC7 /* Pods_Fishing_BuddyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E78E021322C524795D202B7 /* Pods_Fishing_BuddyUITests.framework in Frameworks */,
+				C314CDD9FA47F429C5982FAE /* Pods_Fishing_BuddyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,15 +151,22 @@
 		324982BF8DBBECC9267C8734 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7636A97B1CFBC52C00A86B07 /* FirebaseDatabase.framework */,
+				7636A9711CFBC50600A86B07 /* FirebaseAnalytics.framework */,
+				7636A9721CFBC50600A86B07 /* FirebaseInstanceID.framework */,
+				7636A9731CFBC50600A86B07 /* GoogleInterchangeUtilities.framework */,
+				7636A9741CFBC50600A86B07 /* GoogleSymbolUtilities.framework */,
+				7636A9751CFBC50600A86B07 /* GoogleUtilities.framework */,
 				76A62F1B1CEDF144009760F7 /* libc++.tbd */,
 				76A62F191CEDF0FD009760F7 /* libicucore.tbd */,
 				76A62F171CEDEFDC009760F7 /* SystemConfiguration.framework */,
 				76A62F151CEDEFC6009760F7 /* Security.framework */,
 				76A62F131CEDEFBB009760F7 /* CFNetwork.framework */,
 				76A62F111CEDEF09009760F7 /* Firebase.framework */,
-				0B719231E3C36BBAD56A71E2 /* Pods_Fishing_Buddy.framework */,
-				11375FBB734C3D535A2CA2A9 /* Pods_Fishing_BuddyTests.framework */,
-				782BE3F70ED1A949A46E250E /* Pods_Fishing_BuddyUITests.framework */,
+				7636A97D1CFBC62900A86B07 /* Firebase.framework */,
+				A4D853D948FB99C72AC2A686 /* Pods_Fishing_Buddy.framework */,
+				F81C46325F37DAD910823B71 /* Pods_Fishing_BuddyTests.framework */,
+				90EDCB7493224C2AAB4572D2 /* Pods_Fishing_BuddyUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,13 +196,12 @@
 		766CC7871CAABC8700C229D5 = {
 			isa = PBXGroup;
 			children = (
-				769B80211CF8E885006B1882 /* GoogleService-Info.plist */,
 				766CC7921CAABC8800C229D5 /* Fishing Buddy */,
 				766CC7A91CAABC8800C229D5 /* Fishing BuddyTests */,
 				766CC7B41CAABC8800C229D5 /* Fishing BuddyUITests */,
 				766CC7911CAABC8700C229D5 /* Products */,
 				324982BF8DBBECC9267C8734 /* Frameworks */,
-				AEF620A92EAC4889AAF9A640 /* Pods */,
+				8AFCA465911532EB880DB4DB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +218,7 @@
 		766CC7921CAABC8800C229D5 /* Fishing Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				76687E2C1CFBC86500FC765B /* GoogleService-Info.plist */,
 				766CC7931CAABC8800C229D5 /* AppDelegate.swift */,
 				763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */,
 				76E478A41CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld */,
@@ -224,15 +250,15 @@
 			path = "Fishing BuddyUITests";
 			sourceTree = "<group>";
 		};
-		AEF620A92EAC4889AAF9A640 /* Pods */ = {
+		8AFCA465911532EB880DB4DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D90B8AB94643B28196AFA4B0 /* Pods-Fishing Buddy.debug.xcconfig */,
-				8D204D27EFF25F089ADB6DB3 /* Pods-Fishing Buddy.release.xcconfig */,
-				8D6952545C3D1011E5CA62B4 /* Pods-Fishing BuddyTests.debug.xcconfig */,
-				9B48DEBA35B42F5CFB9CF8A2 /* Pods-Fishing BuddyTests.release.xcconfig */,
-				C31DE0A36934971AFE2E9E3A /* Pods-Fishing BuddyUITests.debug.xcconfig */,
-				F22E2E64952F8179B10C61C8 /* Pods-Fishing BuddyUITests.release.xcconfig */,
+				52E7073742C732E53DB6DB89 /* Pods-Fishing Buddy.debug.xcconfig */,
+				0B8D75E60232BB37A05C1694 /* Pods-Fishing Buddy.release.xcconfig */,
+				C669285948CA1603750CD24B /* Pods-Fishing BuddyTests.debug.xcconfig */,
+				B00ED34D6EAB56A43410B5FE /* Pods-Fishing BuddyTests.release.xcconfig */,
+				327DD7CA79A661DCD2A9B472 /* Pods-Fishing BuddyUITests.debug.xcconfig */,
+				75C84C9D346B00AB8A252957 /* Pods-Fishing BuddyUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -244,12 +270,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 766CC7BA1CAABC8800C229D5 /* Build configuration list for PBXNativeTarget "Fishing Buddy" */;
 			buildPhases = (
-				410B68CCD9724D5E6AE72732 /* 📦 Check Pods Manifest.lock */,
+				60D72418A84CE7638DE6318D /* 📦 Check Pods Manifest.lock */,
 				766CC78C1CAABC8700C229D5 /* Sources */,
 				766CC78D1CAABC8700C229D5 /* Frameworks */,
 				766CC78E1CAABC8700C229D5 /* Resources */,
-				1CC7D407BFE8547FB5C7160A /* 📦 Embed Pods Frameworks */,
-				B87F74EBAF3FA565F6F80955 /* 📦 Copy Pods Resources */,
+				5439FA13AE8EB8B858431F5E /* 📦 Embed Pods Frameworks */,
+				1C1F47240EE72F037D7EA0FE /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -264,12 +290,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 766CC7BD1CAABC8800C229D5 /* Build configuration list for PBXNativeTarget "Fishing BuddyTests" */;
 			buildPhases = (
-				4365A0FA93AEAE1F802C312B /* 📦 Check Pods Manifest.lock */,
+				7E67506382C189BB31B82F1F /* 📦 Check Pods Manifest.lock */,
 				766CC7A21CAABC8800C229D5 /* Sources */,
 				766CC7A31CAABC8800C229D5 /* Frameworks */,
 				766CC7A41CAABC8800C229D5 /* Resources */,
-				0FFA7BB4A19B761CB95B6218 /* 📦 Embed Pods Frameworks */,
-				5ACC73809DF9EF941EBC5099 /* 📦 Copy Pods Resources */,
+				C69D13E0FEC1D5F138A059B0 /* 📦 Embed Pods Frameworks */,
+				6795241A8C1E53811A687E26 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -285,11 +311,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 766CC7C01CAABC8800C229D5 /* Build configuration list for PBXNativeTarget "Fishing BuddyUITests" */;
 			buildPhases = (
-				D401575364E7C9AAE1D52889 /* 📦 Check Pods Manifest.lock */,
+				67EE11D453994BEE62B506F8 /* 📦 Check Pods Manifest.lock */,
 				766CC7AD1CAABC8800C229D5 /* Sources */,
 				766CC7AE1CAABC8800C229D5 /* Frameworks */,
 				766CC7AF1CAABC8800C229D5 /* Resources */,
-				13B98CA5C17BCB33100C5D33 /* 📦 Copy Pods Resources */,
+				4C33EB77A7D2A5C88ECE4EA8 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -351,7 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				766CC7A01CAABC8800C229D5 /* LaunchScreen.storyboard in Resources */,
-				769B80221CF8E885006B1882 /* GoogleService-Info.plist in Resources */,
+				76687E2D1CFBC86500FC765B /* GoogleService-Info.plist in Resources */,
 				766CC79D1CAABC8800C229D5 /* Assets.xcassets in Resources */,
 				766CC79B1CAABC8800C229D5 /* Main.storyboard in Resources */,
 			);
@@ -361,7 +387,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				769B80231CF8E885006B1882 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,104 +394,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				769B80241CF8E885006B1882 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0FFA7BB4A19B761CB95B6218 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		13B98CA5C17BCB33100C5D33 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fishing BuddyUITests/Pods-Fishing BuddyUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1CC7D407BFE8547FB5C7160A /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fishing Buddy/Pods-Fishing Buddy-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		410B68CCD9724D5E6AE72732 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		4365A0FA93AEAE1F802C312B /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		5ACC73809DF9EF941EBC5099 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B87F74EBAF3FA565F6F80955 /* 📦 Copy Pods Resources */ = {
+		1C1F47240EE72F037D7EA0FE /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -481,7 +415,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fishing Buddy/Pods-Fishing Buddy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D401575364E7C9AAE1D52889 /* 📦 Check Pods Manifest.lock */ = {
+		4C33EB77A7D2A5C88ECE4EA8 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fishing BuddyUITests/Pods-Fishing BuddyUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5439FA13AE8EB8B858431F5E /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fishing Buddy/Pods-Fishing Buddy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60D72418A84CE7638DE6318D /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -494,6 +458,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6795241A8C1E53811A687E26 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67EE11D453994BEE62B506F8 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7E67506382C189BB31B82F1F /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C69D13E0FEC1D5F138A059B0 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -653,7 +677,7 @@
 		};
 		766CC7BB1CAABC8800C229D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D90B8AB94643B28196AFA4B0 /* Pods-Fishing Buddy.debug.xcconfig */;
+			baseConfigurationReference = 52E7073742C732E53DB6DB89 /* Pods-Fishing Buddy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -672,7 +696,7 @@
 		};
 		766CC7BC1CAABC8800C229D5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D204D27EFF25F089ADB6DB3 /* Pods-Fishing Buddy.release.xcconfig */;
+			baseConfigurationReference = 0B8D75E60232BB37A05C1694 /* Pods-Fishing Buddy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -691,7 +715,7 @@
 		};
 		766CC7BE1CAABC8800C229D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D6952545C3D1011E5CA62B4 /* Pods-Fishing BuddyTests.debug.xcconfig */;
+			baseConfigurationReference = C669285948CA1603750CD24B /* Pods-Fishing BuddyTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Fishing BuddyTests/Info.plist";
@@ -704,7 +728,7 @@
 		};
 		766CC7BF1CAABC8800C229D5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B48DEBA35B42F5CFB9CF8A2 /* Pods-Fishing BuddyTests.release.xcconfig */;
+			baseConfigurationReference = B00ED34D6EAB56A43410B5FE /* Pods-Fishing BuddyTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Fishing BuddyTests/Info.plist";
@@ -717,7 +741,7 @@
 		};
 		766CC7C11CAABC8800C229D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C31DE0A36934971AFE2E9E3A /* Pods-Fishing BuddyUITests.debug.xcconfig */;
+			baseConfigurationReference = 327DD7CA79A661DCD2A9B472 /* Pods-Fishing BuddyUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Fishing BuddyUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -729,7 +753,7 @@
 		};
 		766CC7C21CAABC8800C229D5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F22E2E64952F8179B10C61C8 /* Pods-Fishing BuddyUITests.release.xcconfig */;
+			baseConfigurationReference = 75C84C9D346B00AB8A252957 /* Pods-Fishing BuddyUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Fishing BuddyUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
