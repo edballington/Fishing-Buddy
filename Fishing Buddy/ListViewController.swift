@@ -119,7 +119,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.sharedContext.deleteObject(fish)
             
             //Delete object from Firebase also
-            firebaseRef.childByAppendingPath("users").childByAppendingPath(userDeviceID).childByAppendingPath(fish.autoID).removeValue()
+            firebaseRef.child("users").child(userDeviceID).child(fish.autoID).removeValue()
             
             do {
                 try sharedContext.save()

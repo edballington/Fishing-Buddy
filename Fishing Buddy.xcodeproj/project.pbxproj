@@ -7,21 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		236173612FF44C9D0D61FDC7 /* Pods_Fishing_BuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F81C46325F37DAD910823B71 /* Pods_Fishing_BuddyTests.framework */; };
-		4FE0AF11D3F7F926E921B90B /* Pods_Fishing_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D853D948FB99C72AC2A686 /* Pods_Fishing_Buddy.framework */; };
 		761704911CE271E400C3E500 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761704901CE271E400C3E500 /* SettingsViewController.swift */; };
 		7624F3C31CDC46DC00165BD7 /* CatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */; };
 		762F16D21CF67C9900B5B07C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F16D11CF67C9900B5B07C /* Constants.swift */; };
 		763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */; };
 		763632D91CB1FE2400A3EF43 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */; };
 		763632DB1CB1FE5600A3EF43 /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763632DA1CB1FE5600A3EF43 /* Catch.swift */; };
-		7636A9761CFBC50600A86B07 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9711CFBC50600A86B07 /* FirebaseAnalytics.framework */; };
-		7636A9771CFBC50600A86B07 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9721CFBC50600A86B07 /* FirebaseInstanceID.framework */; };
-		7636A9781CFBC50600A86B07 /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9731CFBC50600A86B07 /* GoogleInterchangeUtilities.framework */; };
-		7636A9791CFBC50600A86B07 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9741CFBC50600A86B07 /* GoogleSymbolUtilities.framework */; };
-		7636A97A1CFBC50600A86B07 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A9751CFBC50600A86B07 /* GoogleUtilities.framework */; };
-		7636A97C1CFBC52C00A86B07 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A97B1CFBC52C00A86B07 /* FirebaseDatabase.framework */; };
-		7636A97E1CFBC62900A86B07 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7636A97D1CFBC62900A86B07 /* Firebase.framework */; };
 		76687E2D1CFBC86500FC765B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76687E2C1CFBC86500FC765B /* GoogleService-Info.plist */; };
 		766CC7941CAABC8800C229D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7931CAABC8800C229D5 /* AppDelegate.swift */; };
 		766CC7961CAABC8800C229D5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7951CAABC8800C229D5 /* MapViewController.swift */; };
@@ -31,15 +22,19 @@
 		766CC7A01CAABC8800C229D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766CC79E1CAABC8800C229D5 /* LaunchScreen.storyboard */; };
 		766CC7AB1CAABC8800C229D5 /* Fishing_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7AA1CAABC8800C229D5 /* Fishing_BuddyTests.swift */; };
 		766CC7B61CAABC8800C229D5 /* Fishing_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */; };
-		76A62F121CEDEF09009760F7 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F111CEDEF09009760F7 /* Firebase.framework */; };
 		76A62F141CEDEFBB009760F7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F131CEDEFBB009760F7 /* CFNetwork.framework */; };
 		76A62F161CEDEFC6009760F7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F151CEDEFC6009760F7 /* Security.framework */; };
 		76A62F181CEDEFDC009760F7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F171CEDEFDC009760F7 /* SystemConfiguration.framework */; };
 		76A62F1A1CEDF0FD009760F7 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F191CEDF0FD009760F7 /* libicucore.tbd */; };
 		76A62F1C1CEDF144009760F7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A62F1B1CEDF144009760F7 /* libc++.tbd */; };
+		76AD06A31CFC836400B8BD0E /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AD06A21CFC836400B8BD0E /* FirebaseDatabase.framework */; };
+		76AD06A51CFC838200B8BD0E /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AD06A41CFC838200B8BD0E /* FirebaseAnalytics.framework */; };
+		76AD06A71CFC83A900B8BD0E /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AD06A61CFC83A900B8BD0E /* FirebaseInstanceID.framework */; };
+		76AD06A91CFC83C100B8BD0E /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AD06A81CFC83C100B8BD0E /* GoogleInterchangeUtilities.framework */; };
+		76AD06AB1CFC83DC00B8BD0E /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AD06AA1CFC83DC00B8BD0E /* GoogleSymbolUtilities.framework */; };
+		76AD06AD1CFC83EC00B8BD0E /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AD06AC1CFC83EC00B8BD0E /* GoogleUtilities.framework */; };
 		76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76E478A41CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld */; };
 		76ED43AF1CDA2DB5004FB5B1 /* CatchAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */; };
-		C314CDD9FA47F429C5982FAE /* Pods_Fishing_BuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EDCB7493224C2AAB4572D2 /* Pods_Fishing_BuddyUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,13 +65,6 @@
 		763632D01CB1B9C400A3EF43 /* AddCatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCatchViewController.swift; sourceTree = "<group>"; };
 		763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		763632DA1CB1FE5600A3EF43 /* Catch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Catch.swift; sourceTree = "<group>"; };
-		7636A9711CFBC50600A86B07 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
-		7636A9721CFBC50600A86B07 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
-		7636A9731CFBC50600A86B07 /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
-		7636A9741CFBC50600A86B07 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
-		7636A9751CFBC50600A86B07 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
-		7636A97B1CFBC52C00A86B07 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
-		7636A97D1CFBC62900A86B07 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		76687E2C1CFBC86500FC765B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		766CC7901CAABC8700C229D5 /* Fishing Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fishing Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766CC7931CAABC8800C229D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,19 +80,21 @@
 		766CC7B11CAABC8800C229D5 /* Fishing BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fishing BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766CC7B51CAABC8800C229D5 /* Fishing_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fishing_BuddyUITests.swift; sourceTree = "<group>"; };
 		766CC7B71CAABC8800C229D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		76A62F111CEDEF09009760F7 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		76A62F131CEDEFBB009760F7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		76A62F151CEDEFC6009760F7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		76A62F171CEDEFDC009760F7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		76A62F191CEDF0FD009760F7 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		76A62F1B1CEDF144009760F7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		76AD06A21CFC836400B8BD0E /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework; sourceTree = "<group>"; };
+		76AD06A41CFC838200B8BD0E /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		76AD06A61CFC83A900B8BD0E /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		76AD06A81CFC83C100B8BD0E /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Pods/GoogleInterchangeUtilities/Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		76AD06AA1CFC83DC00B8BD0E /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Pods/GoogleSymbolUtilities/Frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		76AD06AC1CFC83EC00B8BD0E /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Pods/GoogleUtilities/Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
 		76E478A51CBD6D6100F022A5 /* FishingBuddy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FishingBuddy.xcdatamodel; sourceTree = "<group>"; };
 		76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchAnnotation.swift; sourceTree = "<group>"; };
-		90EDCB7493224C2AAB4572D2 /* Pods_Fishing_BuddyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_BuddyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4D853D948FB99C72AC2A686 /* Pods_Fishing_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00ED34D6EAB56A43410B5FE /* Pods-Fishing BuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.release.xcconfig"; sourceTree = "<group>"; };
 		C669285948CA1603750CD24B /* Pods-Fishing BuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F81C46325F37DAD910823B71 /* Pods_Fishing_BuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_BuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,20 +102,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7636A9761CFBC50600A86B07 /* FirebaseAnalytics.framework in Frameworks */,
-				7636A97C1CFBC52C00A86B07 /* FirebaseDatabase.framework in Frameworks */,
 				76A62F1C1CEDF144009760F7 /* libc++.tbd in Frameworks */,
-				7636A97E1CFBC62900A86B07 /* Firebase.framework in Frameworks */,
 				76A62F1A1CEDF0FD009760F7 /* libicucore.tbd in Frameworks */,
+				76AD06AD1CFC83EC00B8BD0E /* GoogleUtilities.framework in Frameworks */,
 				76A62F181CEDEFDC009760F7 /* SystemConfiguration.framework in Frameworks */,
-				7636A9791CFBC50600A86B07 /* GoogleSymbolUtilities.framework in Frameworks */,
-				7636A9771CFBC50600A86B07 /* FirebaseInstanceID.framework in Frameworks */,
-				7636A97A1CFBC50600A86B07 /* GoogleUtilities.framework in Frameworks */,
+				76AD06A71CFC83A900B8BD0E /* FirebaseInstanceID.framework in Frameworks */,
+				76AD06A31CFC836400B8BD0E /* FirebaseDatabase.framework in Frameworks */,
 				76A62F161CEDEFC6009760F7 /* Security.framework in Frameworks */,
+				76AD06A91CFC83C100B8BD0E /* GoogleInterchangeUtilities.framework in Frameworks */,
 				76A62F141CEDEFBB009760F7 /* CFNetwork.framework in Frameworks */,
-				76A62F121CEDEF09009760F7 /* Firebase.framework in Frameworks */,
-				7636A9781CFBC50600A86B07 /* GoogleInterchangeUtilities.framework in Frameworks */,
-				4FE0AF11D3F7F926E921B90B /* Pods_Fishing_Buddy.framework in Frameworks */,
+				76AD06AB1CFC83DC00B8BD0E /* GoogleSymbolUtilities.framework in Frameworks */,
+				76AD06A51CFC838200B8BD0E /* FirebaseAnalytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +120,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				236173612FF44C9D0D61FDC7 /* Pods_Fishing_BuddyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +127,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C314CDD9FA47F429C5982FAE /* Pods_Fishing_BuddyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,22 +136,17 @@
 		324982BF8DBBECC9267C8734 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7636A97B1CFBC52C00A86B07 /* FirebaseDatabase.framework */,
-				7636A9711CFBC50600A86B07 /* FirebaseAnalytics.framework */,
-				7636A9721CFBC50600A86B07 /* FirebaseInstanceID.framework */,
-				7636A9731CFBC50600A86B07 /* GoogleInterchangeUtilities.framework */,
-				7636A9741CFBC50600A86B07 /* GoogleSymbolUtilities.framework */,
-				7636A9751CFBC50600A86B07 /* GoogleUtilities.framework */,
+				76AD06A21CFC836400B8BD0E /* FirebaseDatabase.framework */,
+				76AD06A41CFC838200B8BD0E /* FirebaseAnalytics.framework */,
+				76AD06A61CFC83A900B8BD0E /* FirebaseInstanceID.framework */,
+				76AD06A81CFC83C100B8BD0E /* GoogleInterchangeUtilities.framework */,
+				76AD06AA1CFC83DC00B8BD0E /* GoogleSymbolUtilities.framework */,
+				76AD06AC1CFC83EC00B8BD0E /* GoogleUtilities.framework */,
 				76A62F1B1CEDF144009760F7 /* libc++.tbd */,
 				76A62F191CEDF0FD009760F7 /* libicucore.tbd */,
 				76A62F171CEDEFDC009760F7 /* SystemConfiguration.framework */,
 				76A62F151CEDEFC6009760F7 /* Security.framework */,
 				76A62F131CEDEFBB009760F7 /* CFNetwork.framework */,
-				76A62F111CEDEF09009760F7 /* Firebase.framework */,
-				7636A97D1CFBC62900A86B07 /* Firebase.framework */,
-				A4D853D948FB99C72AC2A686 /* Pods_Fishing_Buddy.framework */,
-				F81C46325F37DAD910823B71 /* Pods_Fishing_BuddyTests.framework */,
-				90EDCB7493224C2AAB4572D2 /* Pods_Fishing_BuddyUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -685,6 +665,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/FirebaseDatabase/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleSymbolUtilities/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleUtilities/Frameworks",
 				);
 				INFOPLIST_FILE = "Fishing Buddy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -704,6 +690,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/FirebaseDatabase/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleInterchangeUtilities/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleSymbolUtilities/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleUtilities/Frameworks",
 				);
 				INFOPLIST_FILE = "Fishing Buddy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

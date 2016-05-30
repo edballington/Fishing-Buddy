@@ -51,6 +51,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         setMapInitialState()
         
+
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -192,7 +194,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     /* Method to query other user's catches from Firebase db and store them in Core Data */
     func getCatchesFromFirebase(completion: (success: Bool) -> Void) {
         
-        firebaseRef.childByAppendingPath("users").queryOrderedByChild("users").observeSingleEventOfType(.Value, withBlock: { firebaseSnapshot in
+        firebaseRef.child("users").queryOrderedByChild("users").observeSingleEventOfType(.Value, withBlock: { firebaseSnapshot in
             
             if let catchDictionary = firebaseSnapshot.value as? NSDictionary {
                 
