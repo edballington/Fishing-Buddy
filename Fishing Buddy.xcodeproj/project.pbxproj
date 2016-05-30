@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7123A9A9F8E6389D080FE847 /* Pods_Fishing_BuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF24BBBF843D40761A90DBEF /* Pods_Fishing_BuddyTests.framework */; };
 		761704911CE271E400C3E500 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761704901CE271E400C3E500 /* SettingsViewController.swift */; };
 		7624F3C31CDC46DC00165BD7 /* CatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624F3C21CDC46DC00165BD7 /* CatchTableViewCell.swift */; };
 		762F16D21CF67C9900B5B07C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F16D11CF67C9900B5B07C /* Constants.swift */; };
@@ -35,6 +36,8 @@
 		76AD06AD1CFC83EC00B8BD0E /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AD06AC1CFC83EC00B8BD0E /* GoogleUtilities.framework */; };
 		76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76E478A41CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld */; };
 		76ED43AF1CDA2DB5004FB5B1 /* CatchAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */; };
+		81527E55DECE5FC7DDBB76E4 /* Pods_Fishing_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA962ED69F3BA27F04F45094 /* Pods_Fishing_Buddy.framework */; };
+		DF8D201A3EC6E697377BC33B /* Pods_Fishing_BuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D150A842A5DA569C311988C3 /* Pods_Fishing_BuddyUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,9 @@
 		76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchAnnotation.swift; sourceTree = "<group>"; };
 		B00ED34D6EAB56A43410B5FE /* Pods-Fishing BuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.release.xcconfig"; sourceTree = "<group>"; };
 		C669285948CA1603750CD24B /* Pods-Fishing BuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D150A842A5DA569C311988C3 /* Pods_Fishing_BuddyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_BuddyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF24BBBF843D40761A90DBEF /* Pods_Fishing_BuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_BuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA962ED69F3BA27F04F45094 /* Pods_Fishing_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fishing_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,7 @@
 				76A62F141CEDEFBB009760F7 /* CFNetwork.framework in Frameworks */,
 				76AD06AB1CFC83DC00B8BD0E /* GoogleSymbolUtilities.framework in Frameworks */,
 				76AD06A51CFC838200B8BD0E /* FirebaseAnalytics.framework in Frameworks */,
+				81527E55DECE5FC7DDBB76E4 /* Pods_Fishing_Buddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7123A9A9F8E6389D080FE847 /* Pods_Fishing_BuddyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF8D201A3EC6E697377BC33B /* Pods_Fishing_BuddyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +156,9 @@
 				76A62F171CEDEFDC009760F7 /* SystemConfiguration.framework */,
 				76A62F151CEDEFC6009760F7 /* Security.framework */,
 				76A62F131CEDEFBB009760F7 /* CFNetwork.framework */,
+				FA962ED69F3BA27F04F45094 /* Pods_Fishing_Buddy.framework */,
+				DF24BBBF843D40761A90DBEF /* Pods_Fishing_BuddyTests.framework */,
+				D150A842A5DA569C311988C3 /* Pods_Fishing_BuddyUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

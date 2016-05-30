@@ -50,20 +50,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         mapView.delegate = self
         
         setMapInitialState()
-        
-        //Set up Firebase connection state monitor
-        let connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
-        connectedRef.observeEventType(.Value, withBlock: {snapshot in
-            
-            let connected = snapshot.value as? Bool
-            if connected != nil && connected! {
-                self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
-                self.refreshCatches()
-            } else {
-                self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
-            }
-        
-    })
     
     }
     
@@ -170,12 +156,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             if fish.catchOrigin == "My Catches" {
                 origin = originType.MyCatch
                 catchPinColor = fish.pinColor()
-                print("Add My catch pin color is \(catchPinColor)")
                 pinID = self.myCatchPinID
             } else {
                 origin = originType.OtherCatch
                 catchPinColor = fish.pinColor()
-                print("Add Other catch pin color is \(catchPinColor)")
                 pinID = self.otherCatchPinID
             }
             
@@ -249,16 +233,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             var pinID: String
             var view: MKPinAnnotationView
             
-            print("View for Annotation - Origin = \(annotation.origin) - color = \(annotation.pinColor())")
-            
             if annotation.origin == originType.MyCatch { pinID = myCatchPinID }
             else { pinID = otherCatchPinID }
             
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(pinID) as? MKPinAnnotationView {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
-                
-                print("Dequed a view for catch origin - \(annotation.origin) - pin color \(annotation.pinColor())")
                 
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: pinID)
@@ -284,6 +264,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     lazy var sharedContext: NSManagedObjectContext = {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }()
+    
+    //MARK: Firebase connection state monitor
+    lazy var connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
+    connectedRef.observeEventType(.Value, withBlock: {snapshot in
+    
+    let connected = snapshot.value as? Bool
+    if connected != nil && connected! {
+    self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
+    self.refreshCatches()
+    } else {
+    self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
+    }
+    
+    })
 
 }
 

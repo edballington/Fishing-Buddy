@@ -29,6 +29,22 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         fetchedResultsController.delegate = self
+        
+        //Set up Firebase connection state monitor
+        let connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
+        connectedRef.observeEventType(.Value, withBlock: {snapshot in
+            
+            let connected = snapshot.value as? Bool
+            if connected != nil && connected! {
+                self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
+                self.refreshCatches()
+            } else {
+                self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
+            }
+            
+        })
+        
+        refreshCatches()
 
     }
     
@@ -36,15 +52,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         super.viewWillAppear(true)
         
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.showAlertView("Error retrieving catch data")
-            })
-        }
-        
         tableView.reloadData()
+    
     }
     
     
@@ -52,6 +61,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
    
     
     @IBAction func refreshTableView(sender: AnyObject) {
+        
+        refreshCatches()
         
         tableView.reloadData()
         
@@ -149,12 +160,93 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Convenience Methods
     
     /* Method to display an alertView with a single OK button to acknowledge */
-    func showAlertView(message: String?) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    func showAlertView(title: String, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    /* Retrieve all catches from FetchedResultsController */
+    func fetchAllCatches() {
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.showAlertView("Error", message: "Error retrieving catch data")
+            })
+        }
+        
+    }
+    
+    func refreshCatches() {
+        
+        /* Load catches from fetchedResultsController */
+        
+        fetchAllCatches()
+        
+        // Load catches from Core Data and
+        if let catches = fetchedResultsController.fetchedObjects as? [Catch] {
+            
+            /* First delete all of the catches in the managed object context that aren't mine so they won't get downloaded twice */
+            for fish in catches {
+                
+                if fish.userDeviceID != self.userDeviceID {
+                    
+                    let otherFish = fish as NSManagedObject
+                    self.sharedContext.deleteObject(otherFish)
+                    
+                }
+            }
+            
+            /* Second, save the context after deletion */
+            CoreDataStackManager.sharedInstance().saveContext()
+            
+        }
+        
+        /* Third, fetch the newly updated data from fetchedResultsController so tableView will get updated */
+        getCatchesFromFirebase({ (success) in
+            
+            self.fetchAllCatches()
+            
+        })
+        
+    }
+    
+    /* Method to query other user's catches from Firebase db and store them in Core Data */
+    func getCatchesFromFirebase(completion: (success: Bool) -> Void) {
+        
+        firebaseRef.child("users").queryOrderedByChild("users").observeSingleEventOfType(.Value, withBlock: { firebaseSnapshot in
+            
+            if let catchDictionary = firebaseSnapshot.value as? NSDictionary {
+                
+                for (user, catches) in catchDictionary {
+                    //Only get the catch data for the other users
+                    if (user as! String) != self.userDeviceID {
+                        
+                        //Iterate over all of their catches
+                        for fish in (catches as! NSDictionary) {
+                            
+                            let fishDictionary = (fish.value as! NSDictionary)
+                            
+                            //Create a new Catch Object in shared context from the retrieved dictionary
+                            let _ = Catch(origin: otherCatchString, userDeviceID: user as! String, autoID: fish.key as! String, lat: fishDictionary["latitude"] as! Double, long: fishDictionary["longitude"] as! Double, species: fishDictionary["species"] as! String, weight: fishDictionary["weight"] as! Double, baitType: fishDictionary["baitType"] as! String, baitColor: fishDictionary["baitColor"] as! String, share: true, context: self.sharedContext)
+                            
+                            CoreDataStackManager.sharedInstance().saveContext()
+                            
+                        }
+                        
+                    }
+                }
+                
+                completion(success: true)
+                
+            } else {
+                completion(success: false)
+            }
+        })
+        
+    }
 
 
     
