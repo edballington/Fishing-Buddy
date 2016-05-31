@@ -30,6 +30,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     //MARK: Properties
     
     var mapCenterLocation: CLLocationCoordinate2D?
+    var prevConnected = true            //Flag to indicate whether connection to Firebase was previously connected
+    var connectionTimer = NSTimer()     //Timer for detecting Firebase connect/disconnect
     
     
     //MARK: Constants
@@ -38,6 +40,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     let userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
     let myCatchPinID = "myCatchPin"
     let otherCatchPinID = "otherCatchPin"
+    let connectionTime = 3.0        //Timeout value for detecting Firebase server connected/disconnected state
     
     
     //MARK: View Controller Lifecycle
@@ -51,18 +54,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         setMapInitialState()
         
-        let connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
-        connectedRef.observeEventType(.Value, withBlock: {snapshot in
-            
-            let connected = snapshot.value as? Bool
-            if connected != nil && connected! {
-                self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
-                self.refreshCatches()
-            } else {
-                self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
-            }
-            
-        })
+        prevConnected = true    //When view is loaded assume connection is up to begin with
+        setupConnectionMonitor()
     
     }
     
@@ -85,6 +78,51 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     func setMapInitialState() {
         
         mapView.showsUserLocation = NSUserDefaults.standardUserDefaults().boolForKey(USER_LOCATION_SWITCH_KEY)
+        
+    }
+    
+    /* Monitors Firebase connection status and alerts the user when connection is lost/restored */
+    func setupConnectionMonitor() {
+        
+        let connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
+        connectedRef.observeEventType(.Value, withBlock: {snapshot in
+                
+            let connected = snapshot.value as? Bool
+            if connected != nil && connected! {
+                print("*******Connection restored*******")
+                
+                self.connectionTimer.invalidate()    //Cancel any previous timer
+                self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(self.connectionTime, target: self, selector: #selector(MapViewController.alertConnectionRestored), userInfo: nil, repeats: false)
+                
+            } else {
+                print("*****Connection lost******")
+                
+                self.connectionTimer.invalidate()    //Cancel any previous timer
+                self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(self.connectionTime, target: self, selector: #selector(MapViewController.alertConnectionDown), userInfo: nil, repeats: false)
+            }
+            
+        })
+        
+    }
+    
+    func alertConnectionRestored() {
+        
+        //First check whether this is a change in state from the connection being down - if not do nothing
+        if !self.prevConnected {
+            self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
+            self.prevConnected = true
+            self.refreshCatches()
+        }
+        
+    }
+    
+    func alertConnectionDown() {
+        
+        //First check whether this is a change in state from the connection being up - if not do nothing
+        if self.prevConnected {
+            self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
+            self.prevConnected = false
+        }
         
     }
     
