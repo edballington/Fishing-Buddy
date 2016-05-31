@@ -50,6 +50,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         mapView.delegate = self
         
         setMapInitialState()
+        
+        let connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
+        connectedRef.observeEventType(.Value, withBlock: {snapshot in
+            
+            let connected = snapshot.value as? Bool
+            if connected != nil && connected! {
+                self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
+                self.refreshCatches()
+            } else {
+                self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
+            }
+            
+        })
     
     }
     
@@ -264,20 +277,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     lazy var sharedContext: NSManagedObjectContext = {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }()
-    
-    //MARK: Firebase connection state monitor
-    lazy var connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
-    connectedRef.observeEventType(.Value, withBlock: {snapshot in
-    
-    let connected = snapshot.value as? Bool
-    if connected != nil && connected! {
-    self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
-    self.refreshCatches()
-    } else {
-    self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
-    }
-    
-    })
 
 }
 
