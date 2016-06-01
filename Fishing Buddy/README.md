@@ -25,3 +25,5 @@ List View:
 Settings:
     On the settings tab the user can select settings for the desired pin colors for user catches as well as other's catches.  In addition the user can select whether they want their location displayed on the map view.'
 
+Connection Status:
+    Connection status to the Firebase database server is constantly monitored by the Firebase client.  When the connection to the server is detected as lost the user is notified via an alert.  The user is notified again when the connection is restored and the catch data is automatically refreshed.  Any catches that are pending upload to the Firebase server are  queued and automatically uploaded to the Firebase server when connection is restored.
