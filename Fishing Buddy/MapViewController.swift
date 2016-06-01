@@ -52,8 +52,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         mapView.delegate = self
         
-        setMapInitialState()
-        
         prevConnected = true    //When view is loaded assume connection is up to begin with
         setupConnectionMonitor()
     
@@ -63,6 +61,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         //Do these things every time the mapview appears
         super.viewWillAppear(true)
+        
+        setMapInitialState()
         
         //If a center coordinate has been set then change to it - otherwise leave map as is
         if let mapCoordinate = mapCenterLocation {
@@ -193,41 +193,40 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     /* Add Catches to mapView from array */
     func addCatchesToMap(catches: [Catch]) {
         
-        /* First remove any existing pins so they don't get added again on top of old ones */
         dispatch_async(dispatch_get_main_queue()) {
+            
+            var catchPinColor: UIColor
+            var origin: originType
+            var pinID: String
+            
+            /* First remove any existing pins so they don't get added again on top of old ones */
             self.mapView.removeAnnotations(self.mapView.annotations)
-        }
-        
-        var catchPinColor: UIColor
-        var origin: originType
-        var pinID: String
-        
-        for fish in catches {
             
-            if fish.catchOrigin == "My Catches" {
-                origin = originType.MyCatch
-                catchPinColor = fish.pinColor()
-                pinID = self.myCatchPinID
-            } else {
-                origin = originType.OtherCatch
-                catchPinColor = fish.pinColor()
-                pinID = self.otherCatchPinID
-            }
-            
-            let annotation = CatchAnnotation(origin: origin , species: fish.species, weight: "\(fish.weightPounds) lbs \(fish.weightOunces) oz", lureTypeAndColor: "\(fish.baitType) \(fish.baitColor)", coordinate: fish.coordinate)
-            
-            let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: pinID)
-            
-            annotationView.pinTintColor = catchPinColor
-            annotationView.animatesDrop = true
-            annotationView.draggable = false
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            for fish in catches {
+                
+                if fish.catchOrigin == "My Catches" {
+                    origin = originType.MyCatch
+                    catchPinColor = fish.pinColor()
+                    pinID = self.myCatchPinID
+                } else {
+                    origin = originType.OtherCatch
+                    catchPinColor = fish.pinColor()
+                    pinID = self.otherCatchPinID
+                }
+                
+                let annotation = CatchAnnotation(origin: origin , species: fish.species, weight: "\(fish.weightPounds) lbs \(fish.weightOunces) oz", lureTypeAndColor: "\(fish.baitType) \(fish.baitColor)", coordinate: fish.coordinate)
+                
+                let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: pinID)
+                
+                annotationView.pinTintColor = catchPinColor
+                annotationView.animatesDrop = true
+                annotationView.draggable = false
+                
                 self.mapView.addAnnotation(annotation)
-            })
             
         }
-        
+            
+        }
         
     }
     

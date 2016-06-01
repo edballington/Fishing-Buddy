@@ -31,7 +31,7 @@ class AddCatchViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //MARK: Properties
     
-    var catchAnnotation = MKPointAnnotation()     //Annotation used for the mapView to locate the catch - there should be only on
+    var catchAnnotation = MKPointAnnotation()     //Annotation used for the mapView to locate the catch - there should be only one
     var weightDecimalValue: Double?             //Weight in lbs
     var locationManager = CLLocationManager()
     

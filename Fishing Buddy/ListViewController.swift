@@ -21,6 +21,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     /* Devices Unique ID to distinguish my catches from other user's catches */
     let userDeviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+    let connectionTime = 3.0        //Timeout value for detecting Firebase server connected/disconnected state
+    
+    
+    //MARK: Properties
+    var prevConnected = true            //Flag to indicate whether connection to Firebase was previously connected
+    var connectionTimer = NSTimer()     //Timer for detecting Firebase connect/disconnect
     
     
     //MARK: - View Controller Lifecycle
@@ -30,19 +36,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         fetchedResultsController.delegate = self
         
-        //Set up Firebase connection state monitor
-        let connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
-        connectedRef.observeEventType(.Value, withBlock: {snapshot in
-            
-            let connected = snapshot.value as? Bool
-            if connected != nil && connected! {
-                self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
-                self.refreshCatches()
-            } else {
-                self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
-            }
-            
-        })
+        prevConnected = true    //When view is loaded assume connection is up to begin with
+        setupConnectionMonitor()
         
         refreshCatches()
 
@@ -93,7 +88,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let cellReuseIdentifier = "CatchTableViewCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CatchTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! CatchTableViewCell
+        //let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CatchTableViewCell
         
         let fish = fetchedResultsController.objectAtIndexPath(indexPath) as! Catch
         cell.catchImage.image = UIImage(named: fish.species)
@@ -147,7 +143,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         
-        //If the section index is 1 - i.e. the "Other people's catches" section - then it should not be editable
+        //If the section index is for the "Other people's catches" section - then it should not be editable
         if (fetchedResultsController.objectAtIndexPath(indexPath) as! Catch).catchOrigin == otherCatchString {
             return false
         } else {
@@ -164,6 +160,51 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    /* Monitors Firebase connection status and alerts the user when connection is lost/restored */
+    func setupConnectionMonitor() {
+        
+        let connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
+        connectedRef.observeEventType(.Value, withBlock: {snapshot in
+            
+            let connected = snapshot.value as? Bool
+            if connected != nil && connected! {
+                print("*******Connection restored*******")
+                
+                self.connectionTimer.invalidate()    //Cancel any previous timer
+                self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(self.connectionTime, target: self, selector: #selector(MapViewController.alertConnectionRestored), userInfo: nil, repeats: false)
+                
+            } else {
+                print("*****Connection lost******")
+                
+                self.connectionTimer.invalidate()    //Cancel any previous timer
+                self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(self.connectionTime, target: self, selector: #selector(MapViewController.alertConnectionDown), userInfo: nil, repeats: false)
+            }
+            
+        })
+        
+    }
+    
+    func alertConnectionRestored() {
+        
+        //First check whether this is a change in state from the connection being down - if not do nothing
+        if !self.prevConnected {
+            self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
+            self.prevConnected = true
+            self.refreshCatches()
+        }
+        
+    }
+    
+    func alertConnectionDown() {
+        
+        //First check whether this is a change in state from the connection being up - if not do nothing
+        if self.prevConnected {
+            self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
+            self.prevConnected = false
+        }
+        
     }
     
     /* Retrieve all catches from FetchedResultsController */
@@ -290,9 +331,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         switch type {
         case .Insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
         case .Delete:
-            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
         default:
             break
         }
@@ -303,14 +344,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         switch type {
         case .Insert:
-            if let indexPath  = newIndexPath {
-            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            }
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
             break;
         case .Delete:
-            if let indexPath = indexPath {
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            }
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             break;
 
         default:
