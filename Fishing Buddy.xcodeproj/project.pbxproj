@@ -35,6 +35,7 @@
 		76AD06AB1CFC83DC00B8BD0E /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AD06AA1CFC83DC00B8BD0E /* GoogleSymbolUtilities.framework */; };
 		76AD06AD1CFC83EC00B8BD0E /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AD06AC1CFC83EC00B8BD0E /* GoogleUtilities.framework */; };
 		76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76E478A41CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld */; };
+		76E9533C1CFF19C3005E7B28 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 76E9533B1CFF19C3005E7B28 /* README.md */; };
 		76ED43AF1CDA2DB5004FB5B1 /* CatchAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */; };
 		81527E55DECE5FC7DDBB76E4 /* Pods_Fishing_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA962ED69F3BA27F04F45094 /* Pods_Fishing_Buddy.framework */; };
 		DF8D201A3EC6E697377BC33B /* Pods_Fishing_BuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D150A842A5DA569C311988C3 /* Pods_Fishing_BuddyUITests.framework */; };
@@ -95,6 +96,7 @@
 		76AD06AA1CFC83DC00B8BD0E /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Pods/GoogleSymbolUtilities/Frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
 		76AD06AC1CFC83EC00B8BD0E /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Pods/GoogleUtilities/Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
 		76E478A51CBD6D6100F022A5 /* FishingBuddy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FishingBuddy.xcdatamodel; sourceTree = "<group>"; };
+		76E9533B1CFF19C3005E7B28 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76ED43AE1CDA2DB5004FB5B1 /* CatchAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchAnnotation.swift; sourceTree = "<group>"; };
 		B00ED34D6EAB56A43410B5FE /* Pods-Fishing BuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.release.xcconfig"; sourceTree = "<group>"; };
 		C669285948CA1603750CD24B /* Pods-Fishing BuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fishing BuddyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fishing BuddyTests/Pods-Fishing BuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		766CC7921CAABC8800C229D5 /* Fishing Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				76E9533B1CFF19C3005E7B28 /* README.md */,
 				76687E2C1CFBC86500FC765B /* GoogleService-Info.plist */,
 				766CC7931CAABC8800C229D5 /* AppDelegate.swift */,
 				763632D81CB1FE2400A3EF43 /* CoreDataStackManager.swift */,
@@ -525,6 +528,7 @@
 				76E478A61CBD6D6100F022A5 /* FishingBuddy.xcdatamodeld in Sources */,
 				76ED43AF1CDA2DB5004FB5B1 /* CatchAnnotation.swift in Sources */,
 				763632D91CB1FE2400A3EF43 /* CoreDataStackManager.swift in Sources */,
+				76E9533C1CFF19C3005E7B28 /* README.md in Sources */,
 				766CC7941CAABC8800C229D5 /* AppDelegate.swift in Sources */,
 				7624F3C31CDC46DC00165BD7 /* CatchTableViewCell.swift in Sources */,
 				763632D11CB1B9C400A3EF43 /* AddCatchViewController.swift in Sources */,

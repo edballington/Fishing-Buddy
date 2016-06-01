@@ -199,8 +199,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             var origin: originType
             var pinID: String
             
-            /* First remove any existing pins so they don't get added again on top of old ones */
-            self.mapView.removeAnnotations(self.mapView.annotations)
+            /* First remove any existing pins (except user location) so they don't get added again on top of old ones */
+            self.mapView.annotations.forEach {
+                if !($0 is MKUserLocation) {
+                    self.mapView.removeAnnotation($0)
+                }
+            }
             
             for fish in catches {
                 
@@ -216,11 +220,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
                 
                 let annotation = CatchAnnotation(origin: origin , species: fish.species, weight: "\(fish.weightPounds) lbs \(fish.weightOunces) oz", lureTypeAndColor: "\(fish.baitType) \(fish.baitColor)", coordinate: fish.coordinate)
                 
-                let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: pinID)
+                /* Reuse annotatiovView if available */
+                if let annotationView = self.mapView.dequeueReusableAnnotationViewWithIdentifier(pinID) {
+                    annotationView.annotation = annotation
+                    
+                } else {
+                    let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: pinID)
                 
-                annotationView.pinTintColor = catchPinColor
-                annotationView.animatesDrop = true
-                annotationView.draggable = false
+                    annotationView.pinTintColor = catchPinColor
+                    annotationView.animatesDrop = true
+                    annotationView.draggable = false
+                }
                 
                 self.mapView.addAnnotation(annotation)
             
