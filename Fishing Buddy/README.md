@@ -13,7 +13,8 @@ Adding a new catch:
     1. To add a new catch the user taps the plus symbol in the toolbar at the top of the page
     2. The user is then presented with a page where the catch can be located on the map and details provided
     3. The catch location pin on the presented map is automatically shown at the user's currrent location but can be moved to a new location by holding the pin and dragging.
-    4. Once the pin location is satisfactory the other details of the catch can be filled in by using the provided picker views.  If the user desires to share their catch to the Firebase database so others can view it then the share switch should be selected.
+    4. Once the pin location is satisfactory the other details of the catch can be filled in by using the provided picker views.  
+    4. If the user desires to share their catch to the Firebase database so others can view it within their apps then the share switch should be set to ON.
     5. Once everything is complete the user taps the Save button and the catch is added to the map view as well as posted to the Firebase database.
 
 List View:

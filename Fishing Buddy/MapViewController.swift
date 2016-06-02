@@ -30,7 +30,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     //MARK: Properties
     
     var mapCenterLocation: CLLocationCoordinate2D?
-    var prevConnected = true            //Flag to indicate whether connection to Firebase was previously connected
+    var connected = true            //Flag to indicate connection status to Firebase
     var connectionTimer = NSTimer()     //Timer for detecting Firebase connect/disconnect
     
     
@@ -52,7 +52,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         mapView.delegate = self
         
-        prevConnected = true    //When view is loaded assume connection is up to begin with
+        connected = true    //When view is loaded assume connection is up to begin with
         setupConnectionMonitor()
     
     }
@@ -108,9 +108,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     func alertConnectionRestored() {
         
         //First check whether this is a change in state from the connection being down - if not do nothing
-        if !self.prevConnected {
+        if !self.connected {
             self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
-            self.prevConnected = true
+            self.connected = true
             self.refreshCatches()
         }
         
@@ -119,9 +119,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     func alertConnectionDown() {
         
         //First check whether this is a change in state from the connection being up - if not do nothing
-        if self.prevConnected {
+        if self.connected {
             self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
-            self.prevConnected = false
+            self.connected = false
         }
         
     }
@@ -165,7 +165,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
                 if fish.userDeviceID != self.userDeviceID {
                     
                     let otherFish = fish as NSManagedObject
-                    self.sharedContext.deleteObject(otherFish)
+                    if connected { self.sharedContext.deleteObject(otherFish) }  //Only do this if user is connected
                     
                 }
             }
@@ -175,7 +175,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             
         }
         
-        /* Third, get a new set of other user's catches from Firebase - when done loading then add all catches to the map */
+        /* Third, get a new set of other user's catches from Firebase - when done loading then add all catches to the map 
+         Only do this if user is connected. Otherwise just stop the progress indicator */
+        
+        if connected {
         getCatchesFromFirebase({ (success) in
             
                 let newCatches = self.fetchAllCatches()
@@ -187,6 +190,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
                 })
             
         })
+        } else {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.progressIndicator.stopAnimating()
+            })
+        }
         
     }
     

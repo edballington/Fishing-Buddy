@@ -25,7 +25,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     //MARK: Properties
-    var prevConnected = true            //Flag to indicate whether connection to Firebase was previously connected
+    var connected = true            //Flag to indicate whether connection to Firebase was previously connected
     var connectionTimer = NSTimer()     //Timer for detecting Firebase connect/disconnect
     
     
@@ -36,9 +36,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         fetchedResultsController.delegate = self
         
-        prevConnected = true    //When view is loaded assume connection is up to begin with
+        connected = true    //When view is loaded assume connection is up to begin with
         setupConnectionMonitor()
         
+        fetchAllCatches()
         refreshCatches()
 
     }
@@ -189,9 +190,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func alertConnectionRestored() {
         
         //First check whether this is a change in state from the connection being down - if not do nothing
-        if !self.prevConnected {
+        if !self.connected {
             self.showAlertView("Alert", message: "Connection to server restored - all pending catches will be updated")
-            self.prevConnected = true
+            self.connected = true
             self.refreshCatches()
         }
         
@@ -200,9 +201,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func alertConnectionDown() {
         
         //First check whether this is a change in state from the connection being up - if not do nothing
-        if self.prevConnected {
+        if self.connected {
             self.showAlertView("Alert", message: "Connection to server lost - catches by others may not be up to date")
-            self.prevConnected = false
+            self.connected = false
         }
         
     }
@@ -222,11 +223,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func refreshCatches() {
         
-        /* Load catches from fetchedResultsController */
-        
-        fetchAllCatches()
-        
-        // Load catches from Core Data and
+        // Load catches from Core Data
         if let catches = fetchedResultsController.fetchedObjects as? [Catch] {
             
             /* First delete all of the catches in the managed object context that aren't mine so they won't get downloaded twice */
@@ -235,7 +232,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if fish.userDeviceID != self.userDeviceID {
                     
                     let otherFish = fish as NSManagedObject
-                    self.sharedContext.deleteObject(otherFish)
+                    if connected { self.sharedContext.deleteObject(otherFish) } //Only do this if I am connected
                     
                 }
             }
@@ -245,12 +242,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         }
         
-        /* Third, fetch the newly updated data from fetchedResultsController so tableView will get updated */
+        /* Third, fetch the newly updated data from fetchedResultsController so tableView will get updated 
+         Only do this if user is connected */
+        if connected {
         getCatchesFromFirebase({ (success) in
-            
-            self.fetchAllCatches()
-            
+            print("Data successfully pulled from Firebase")
         })
+        }
         
     }
     
@@ -300,13 +298,15 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
         let fetchRequest = NSFetchRequest(entityName: "Catch")
-        
-        fetchRequest.sortDescriptors = []
+        let primarySortDescriptor = NSSortDescriptor(key: "catchOrigin", ascending: true)
+        let secondarySortDescriptor = NSSortDescriptor(key: "species", ascending: true)
+        fetchRequest.sortDescriptors = [primarySortDescriptor, secondarySortDescriptor]
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                                   managedObjectContext: self.sharedContext,
                                                                   sectionNameKeyPath: "catchOrigin",
                                                                   cacheName: nil)
         
+        fetchedResultsController.delegate = self
         return fetchedResultsController
         
     }()
